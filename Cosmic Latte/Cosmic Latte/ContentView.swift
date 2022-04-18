@@ -2,14 +2,14 @@
 //  ContentView.swift
 //  Cosmic Latte
 //
-//  Created by Joseph Jarvis on 04/04/2022.
+//  Created by Joseph Jarvis on 04/03/2022.
 //
 
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
+        Text("Cosmic Latte")
             .padding()
     }
 }
