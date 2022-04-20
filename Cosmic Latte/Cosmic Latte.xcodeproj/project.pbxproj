@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D907D10281035F800C5EFE9 /* CosmicLatteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D907D0F281035F800C5EFE9 /* CosmicLatteViewModel.swift */; };
 		5DBDDFBF280D58BC00DCC84A /* APIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBDDFBE280D58BB00DCC84A /* APIServices.swift */; };
 		5DBDDFC1280D5EC900DCC84A /* APIDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBDDFC0280D5EC900DCC84A /* APIDataModels.swift */; };
 		87FE228627FB35BF00A8F5C5 /* Cosmic_LatteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FE228527FB35BF00A8F5C5 /* Cosmic_LatteApp.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D907D0F281035F800C5EFE9 /* CosmicLatteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmicLatteViewModel.swift; sourceTree = "<group>"; };
 		5DBDDFBB280D54ED00DCC84A /* Cosmic-Latte-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Cosmic-Latte-Info.plist"; sourceTree = SOURCE_ROOT; };
 		5DBDDFBE280D58BB00DCC84A /* APIServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServices.swift; sourceTree = "<group>"; };
 		5DBDDFC0280D5EC900DCC84A /* APIDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDataModels.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			children = (
 				5DBDDFBB280D54ED00DCC84A /* Cosmic-Latte-Info.plist */,
 				87FE228527FB35BF00A8F5C5 /* Cosmic_LatteApp.swift */,
+				5D907D0F281035F800C5EFE9 /* CosmicLatteViewModel.swift */,
 				87FE228727FB35BF00A8F5C5 /* ContentView.swift */,
 				5DBDDFBE280D58BB00DCC84A /* APIServices.swift */,
 				5DBDDFC0280D5EC900DCC84A /* APIDataModels.swift */,
@@ -147,6 +150,7 @@
 			files = (
 				87FE228827FB35BF00A8F5C5 /* ContentView.swift in Sources */,
 				5DBDDFBF280D58BC00DCC84A /* APIServices.swift in Sources */,
+				5D907D10281035F800C5EFE9 /* CosmicLatteViewModel.swift in Sources */,
 				5DBDDFC1280D5EC900DCC84A /* APIDataModels.swift in Sources */,
 				87FE228627FB35BF00A8F5C5 /* Cosmic_LatteApp.swift in Sources */,
 			);
