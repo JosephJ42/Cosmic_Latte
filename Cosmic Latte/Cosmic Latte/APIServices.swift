@@ -10,55 +10,137 @@ import CoreLocation
 
 //Moon and cloud cover API request based on location
 
-public final class moonAndWeatherAPI: NSObject {
+public final class moonAndWeatherAPI: NSObject, CLLocationManagerDelegate {
+    
+    public override init(){
+        super.init()
+        getLocation.delegate = self
+    }
+    
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else {return}
+        makeMoonAndCloudDataRequest(forCoordinates: location.coordinate)
+    }
+    
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Issue with data: \(error.localizedDescription)")
+    }
+    
     
     private let getLocation = CLLocationManager()
     private let moonAndWeatherAPIKey = "fb4536a4745851c5a49cfcb7a2a5b13f"
-    private var completionHandler: (()-> Void)?
+    private var completionHandler: ((moonAndClouds)-> Void)?
     
+    public func getUsersLocation(_ completionHandler: @escaping((moonAndClouds)-> Void)){
+        self.completionHandler = completionHandler
+        getLocation.requestWhenInUseAuthorization()
+        getLocation.startUpdatingLocation()
+    }
+    
+        private func makeMoonAndCloudDataRequest(forCoordinates coordinates: CLLocationCoordinate2D){
+            guard let moonAndCloudAPIString = "https://api.openweathermap.org/data/2.5/onecall?lat=\(coordinates.latitude)&lon=\(coordinates.longitude)&exclude=hourly&appid=\(moonAndWeatherAPIKey)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            else {return}
+            
+            guard let url = URL(string: moonAndCloudAPIString) else {return}
+            
+            URLSession.shared.dataTask(with: url){ data, response, error in guard error == nil, let data = data else {return}
+            
+                if let response = try? JSONDecoder().decode(moonAndWeatherAPIResponse.self, from: data){
+                self.completionHandler?(moonAndClouds(response: response))
+            }
+        }.resume()
+    }
 }
 
 
 struct moonAndWeatherAPIResponse: Decodable{
-    let name: String
-    let main: moonAndWeatherAPIMain
+    let moonAndCloud: moonAndWeatherAPIMain
     let moonAndWeather: [APIMoonAndWeather]
+    
+    
+    
+    
+    
 }
 
 struct moonAndWeatherAPIMain: Decodable {
-    
-    
+    let moon_phase: [Double]
+    let clouds : [Int]
 }
 
 struct APIMoonAndWeather : Decodable{
+    let daily: String
     
+    enum CodingKeys: String, CodingKey{
+        case daily = "daily"
+    }
     
     
 }
 
 //Plant API Request based on location
 
-public final class planetAPI: NSObject {
+public final class planetAPI: NSObject, CLLocationManagerDelegate {
+    
+    public override init(){
+        super.init()
+        getLocation.delegate = self
+    }
+    
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else {return}
+        makePlanetDataRequest(forCoordinates: location.coordinate)
+    }
+    
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Issue with data: \(error.localizedDescription)")
+    }
+    
     
     private let getLocation = CLLocationManager()
-    private var completionHandler: (()-> Void)?
+    private var completionHandler: ((planets)-> Void)?
+    
+    
+    public func getUsersLocation(_ completionHandler: @escaping((planets)-> Void)){
+        self.completionHandler = completionHandler
+        getLocation.requestWhenInUseAuthorization()
+        getLocation.startUpdatingLocation()
+    }
+    
+        private func makePlanetDataRequest(forCoordinates coordinates: CLLocationCoordinate2D){
+            guard let planetAPIString = "https://visible-planets-api.herokuapp.com/v2?latitude=\(coordinates.latitude)&longitude=\(coordinates.longitude)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            else {return}
+            
+            guard let url = URL(string: planetAPIString) else {return}
+            
+            URLSession.shared.dataTask(with: url){ data, response, error in guard error == nil, let data = data else {return}
+            
+                if let response = try? JSONDecoder().decode(viewablePlanetsAPIResponse.self, from: data){
+                self.completionHandler?(planets(response: response))
+            }
+        }.resume()
+    }
+    
     
 }
 
-struct viewablePlantsAPIResponse: Decodable{
-    let name: String
-    let main: plantsAPIMain
-    let plants: [APIplants]
+struct viewablePlanetsAPIResponse: Decodable{
+    let planetInfo: planetsAPIMain
+    let planetsData: [APIplants]
 }
 
-struct plantsAPIMain: Decodable {
-    
+struct planetsAPIMain: Decodable {
+    let name: [String]
+    let aboveHorizon : [Bool]
     
 }
 
 struct APIplants : Decodable{
-    let description: String
+    let planetData: String
     
+    enum CodingKeys: String, CodingKey{
+        case planetData = "data"
+    }
 }
 
 
@@ -66,22 +148,41 @@ struct APIplants : Decodable{
 
 public final class spaceNewsAPI: NSObject {
     
-    private var completionHandler: (()-> Void)?
+    private var completionHandler: ((spaceNews)-> Void)?
+    
+    private func spaceNewsDataRequest(){
+        guard let spaceNewsAPIString = "https://api.spaceflightnewsapi.net/v3/articles".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        else {return}
+            
+        guard let url = URL(string: spaceNewsAPIString) else {return}
+            
+        URLSession.shared.dataTask(with: url){ data, response, error in guard error == nil, let data = data else {return}
+            
+            if let response = try? JSONDecoder().decode(spaceNewsAPIResponse.self, from: data){
+            self.completionHandler?(spaceNews(response: response))
+            }
+        }.resume()
+    }
+    
     
 }
 
 struct spaceNewsAPIResponse: Decodable{
-    let name: String
-    let main: spaceNewsAPIMain
+    
+    let SpaceNewsMain: spaceNewsAPIMain
     let spaceNews: [APISpaceNews]
 }
 
 struct spaceNewsAPIMain: Decodable {
+    let title: [String]
+    let url: [String]
+    let imageUrl: [String]
+    let newsSite: [String]
+    let summary : [String]
+    let publishedAt: [String]
     
     
 }
 
 struct APISpaceNews : Decodable{
-    
-    
 }
