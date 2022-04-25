@@ -57,10 +57,6 @@ struct moonAndWeatherAPIResponse: Decodable{
     let moonAndCloud: moonAndWeatherAPIMain
     let moonAndWeather: [APIMoonAndWeather]
     
-    
-    
-    
-    
 }
 
 struct moonAndWeatherAPIMain: Decodable {
