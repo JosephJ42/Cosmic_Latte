@@ -7,11 +7,12 @@
 
 import Foundation
 
-private let defaultMoon = ""
+private let defaultMoon = "Full Moon"
 private let moonImage = ""
 private let weather =  ""
 
 public class moonViewModel : ObservableObject {
+    
     
     
 }

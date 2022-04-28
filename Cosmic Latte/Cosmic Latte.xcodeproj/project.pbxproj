@@ -14,11 +14,13 @@
 		87FE228827FB35BF00A8F5C5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FE228727FB35BF00A8F5C5 /* ContentView.swift */; };
 		87FE228A27FB35C200A8F5C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87FE228927FB35C200A8F5C5 /* Assets.xcassets */; };
 		87FE228D27FB35C200A8F5C5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87FE228C27FB35C200A8F5C5 /* Preview Assets.xcassets */; };
+		D403FD4C2817129D0037CCD8 /* SpaceNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D403FD4B2817129D0037CCD8 /* SpaceNewsView.swift */; };
+		D403FD4E281712CB0037CCD8 /* CondensedPredictionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D403FD4D281712CB0037CCD8 /* CondensedPredictionView.swift */; };
+		D403FD50281725F60037CCD8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D403FD4F281725F60037CCD8 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5D907D0F281035F800C5EFE9 /* CosmicLatteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmicLatteViewModel.swift; sourceTree = "<group>"; };
-		5DBDDFBB280D54ED00DCC84A /* Cosmic-Latte-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Cosmic-Latte-Info.plist"; sourceTree = SOURCE_ROOT; };
 		5DBDDFBE280D58BB00DCC84A /* APIServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServices.swift; sourceTree = "<group>"; };
 		5DBDDFC0280D5EC900DCC84A /* APIDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDataModels.swift; sourceTree = "<group>"; };
 		87FE228227FB35BF00A8F5C5 /* Cosmic Latte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cosmic Latte.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -26,6 +28,9 @@
 		87FE228727FB35BF00A8F5C5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		87FE228927FB35C200A8F5C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		87FE228C27FB35C200A8F5C5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D403FD4B2817129D0037CCD8 /* SpaceNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceNewsView.swift; sourceTree = "<group>"; };
+		D403FD4D281712CB0037CCD8 /* CondensedPredictionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CondensedPredictionView.swift; sourceTree = "<group>"; };
+		D403FD4F281725F60037CCD8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +63,6 @@
 		87FE228427FB35BF00A8F5C5 /* Cosmic Latte */ = {
 			isa = PBXGroup;
 			children = (
-				5DBDDFBB280D54ED00DCC84A /* Cosmic-Latte-Info.plist */,
 				87FE228527FB35BF00A8F5C5 /* Cosmic_LatteApp.swift */,
 				5D907D0F281035F800C5EFE9 /* CosmicLatteViewModel.swift */,
 				87FE228727FB35BF00A8F5C5 /* ContentView.swift */,
@@ -66,6 +70,9 @@
 				5DBDDFC0280D5EC900DCC84A /* APIDataModels.swift */,
 				87FE228927FB35C200A8F5C5 /* Assets.xcassets */,
 				87FE228B27FB35C200A8F5C5 /* Preview Content */,
+				D403FD4B2817129D0037CCD8 /* SpaceNewsView.swift */,
+				D403FD4D281712CB0037CCD8 /* CondensedPredictionView.swift */,
+				D403FD4F281725F60037CCD8 /* MainView.swift */,
 			);
 			path = "Cosmic Latte";
 			sourceTree = "<group>";
@@ -149,10 +156,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				87FE228827FB35BF00A8F5C5 /* ContentView.swift in Sources */,
+				D403FD50281725F60037CCD8 /* MainView.swift in Sources */,
 				5DBDDFBF280D58BC00DCC84A /* APIServices.swift in Sources */,
+				D403FD4C2817129D0037CCD8 /* SpaceNewsView.swift in Sources */,
 				5D907D10281035F800C5EFE9 /* CosmicLatteViewModel.swift in Sources */,
 				5DBDDFC1280D5EC900DCC84A /* APIDataModels.swift in Sources */,
 				87FE228627FB35BF00A8F5C5 /* Cosmic_LatteApp.swift in Sources */,
+				D403FD4E281712CB0037CCD8 /* CondensedPredictionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,9 +296,10 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Cosmic-Latte-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -316,9 +327,10 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Cosmic-Latte-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
