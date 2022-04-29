@@ -19,7 +19,7 @@ struct MainView: View {
     var isNeptuneVisable = false
     var isPlutoVisable = false
     
-    var moonStatus = "Full Moon"
+    var moonStatus = "Waning Crescent"
     
     var body: some View {
         ZStack{

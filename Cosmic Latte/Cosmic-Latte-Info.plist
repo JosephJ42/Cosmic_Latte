@@ -9,5 +9,7 @@
 		<key>UIImageName</key>
 		<string>Full Moon</string>
 	</dict>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleDefault</string>
 </dict>
 </plist>

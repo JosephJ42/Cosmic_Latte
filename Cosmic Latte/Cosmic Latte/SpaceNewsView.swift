@@ -42,9 +42,7 @@ struct SpaceNewsView: View {
                             .background(Color("App textboxes and overlay"))
                             .cornerRadius(15)
                         
-                        HStack{
-                            Text("Space News")
-                        }
+                     
                     }.frame(width: 360, height: 60, alignment: .top)
                     
                     ZStack{
@@ -64,7 +62,24 @@ struct SpaceNewsView: View {
                             .cornerRadius(15)
                     }.frame(width: 360, height: 200, alignment: .top)
                     
-                }
+                    }
+                
+                //News Feed
+                ZStack{
+                    
+                    VStack{
+                        Spacer().frame(height: 98)
+                        List(){
+                            
+                            NewsRow()
+                                .listRowInsets(EdgeInsets())
+                            
+                            }.frame(width: 360, height: 660)
+                             .background(Color("App textboxes and overlay"))
+                             .cornerRadius(15)
+                        }
+                    
+                    }
             }
         }
 }
@@ -72,5 +87,26 @@ struct SpaceNewsView: View {
 struct SpaceNewsView_Previews: PreviewProvider {
     static var previews: some View {
         SpaceNewsView()
+    }
+}
+
+struct NewsRow: View {
+    var body: some View {
+        HStack{
+            AsyncImage(url: URL(string: ""))
+                .frame(width: 150, height: 100)
+                .cornerRadius(15)
+                
+            
+            Spacer().frame(width: 10)
+            VStack{
+                
+                Text("News article Title:")
+                Text("Source:")
+                Text("Description: ")
+                
+                
+            }
+        }
     }
 }

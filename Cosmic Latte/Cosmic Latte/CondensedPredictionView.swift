@@ -42,10 +42,7 @@ struct CondensedPredictionView: View {
                             .background(Color("App textboxes and overlay"))
                             .cornerRadius(15)
                         
-                        HStack{
-                            Text("Prediction View")
-                            
-                        }
+                   
                     }.frame(width: 360, height: 60, alignment: .top)
                     
                     ZStack{
@@ -66,12 +63,49 @@ struct CondensedPredictionView: View {
                     }.frame(width: 360, height: 200, alignment: .top)
                     
                 }
+                //Condensed View Feed
+                ZStack{
+                    
+                    VStack{
+                        Spacer().frame(height: 98)
+                        List(){
+                            Text("Location:")
+                            
+                            PredictionViewRow()
+                            
+                            
+                            
+                            }.frame(width: 360, height: 660)
+                             .background(Color("App textboxes and overlay"))
+                             .cornerRadius(15)
+                        }
+                    
+                    }
+                }
             }
         }
-}
 
 struct CondensedPredictionView_Previews: PreviewProvider {
     static var previews: some View {
         CondensedPredictionView()
+            .preferredColorScheme(.light)
+    }
+}
+
+struct PredictionViewRow: View {
+    var body: some View {
+        HStack{
+            //image
+            Image("Full Moon")
+            
+            Spacer().frame(width: 20)
+            //Text V stack
+            VStack{
+                Text("Date:")
+                Text("Prediction:")
+                Text("Conditions:")
+            }.frame(alignment: .leading)
+            
+        }
     }
 }
