@@ -93,6 +93,11 @@ struct CondensedPredictionView_Previews: PreviewProvider {
 }
 
 struct PredictionViewRow: View {
+    
+    //@ObservedObject var viewModel: moonViewModel
+    
+    
+    
     var body: some View {
         HStack{
             //image

@@ -66,23 +66,22 @@ struct SpaceNewsView: View {
                 
                 //News Feed
                 ZStack{
-                    
-                    VStack{
+                    ScrollView(){
                         Spacer().frame(height: 98)
-                        List(){
-                            
-                            NewsRow()
-                                .listRowInsets(EdgeInsets())
-                            
-                            }.frame(width: 360, height: 660)
-                             .background(Color("App textboxes and overlay"))
-                             .cornerRadius(15)
+                        
+                            VStack(spacing: 10){
+                                NewsRow() 
+                                        .listRowInsets(EdgeInsets())
+                                
+                                }.frame(width: 360, height: 660)
+                                     .background(Color("App textboxes and overlay"))
+                                     .cornerRadius(15)
                         }
-                    
                     }
             }
         }
-}
+    }
+
 
 struct SpaceNewsView_Previews: PreviewProvider {
     static var previews: some View {
@@ -91,22 +90,23 @@ struct SpaceNewsView_Previews: PreviewProvider {
 }
 
 struct NewsRow: View {
+    
+    //@ObservedObject var viewModel: spaceNewsViewModel
+    
     var body: some View {
         HStack{
-            AsyncImage(url: URL(string: ""))
+            AsyncImage(url: URL(string: "")) //viewModel.newsImageUrl
                 .frame(width: 150, height: 100)
                 .cornerRadius(15)
                 
             
             Spacer().frame(width: 10)
             VStack{
-                
-                Text("News article Title:")
-                Text("Source:")
-                Text("Description: ")
-                
-                
-            }
+                Text("") //viewModel.title
+                Text("") //viewModel.newsSource
+                Text("") //viewModel.newsDescription
+            }//.onAppear(perform: spaceNews.newsRefresh)
+
         }
     }
 }

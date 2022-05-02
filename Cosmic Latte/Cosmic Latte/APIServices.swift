@@ -37,42 +37,32 @@ public final class moonAndWeatherAPI: NSObject, CLLocationManagerDelegate {
         getLocation.startUpdatingLocation()
     }
     
-        private func makeMoonAndCloudDataRequest(forCoordinates coordinates: CLLocationCoordinate2D){
+    private func makeMoonAndCloudDataRequest(forCoordinates coordinates: CLLocationCoordinate2D){
             guard let moonAndCloudAPIString = "https://api.openweathermap.org/data/2.5/onecall?lat=\(coordinates.latitude)&lon=\(coordinates.longitude)&exclude=hourly&appid=\(moonAndWeatherAPIKey)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             else {return}
             
             guard let url = URL(string: moonAndCloudAPIString) else {return}
             
-            URLSession.shared.dataTask(with: url){ data, response, error in guard error == nil, let data = data else {return}
+            URLSession.shared.dataTask(with: url){ data, response, error in
+                guard error == nil, let data = data else {return}
             
                 if let response = try? JSONDecoder().decode(moonAndWeatherAPIResponse.self, from: data){
-                self.completionHandler?(moonAndClouds(response: response))
-            }
-        }.resume()
+                    self.completionHandler?(moonAndClouds(response: response))
+                }
+            }.resume()
     }
 }
 
 
 struct moonAndWeatherAPIResponse: Decodable{
     let moonAndCloud: moonAndWeatherAPIMain
-    let moonAndWeather: [APIMoonAndWeather]
-    
 }
 
 struct moonAndWeatherAPIMain: Decodable {
-    let moon_phase: [Double]
-    let clouds : [Int]
+    let moon_phase: Double
+    let clouds : Int
 }
 
-struct APIMoonAndWeather : Decodable{
-    let daily: String
-    
-    enum CodingKeys: String, CodingKey{
-        case daily = "daily"
-    }
-    
-    
-}
 
 //Plant API Request based on location
 
@@ -116,27 +106,16 @@ public final class planetAPI: NSObject, CLLocationManagerDelegate {
             }
         }.resume()
     }
-    
-    
 }
 
-struct viewablePlanetsAPIResponse: Decodable{
-    let planetInfo: planetsAPIMain
-    let planetsData: [APIplants]
+
+struct viewablePlanetsAPIResponse: Decodable, Hashable{
+    let planetsData: planetsAPIMain
 }
 
-struct planetsAPIMain: Decodable {
-    let name: [String]
-    let aboveHorizon : [Bool]
-    
-}
-
-struct APIplants : Decodable{
-    let planetData: String
-    
-    enum CodingKeys: String, CodingKey{
-        case planetData = "data"
-    }
+struct planetsAPIMain: Decodable, Hashable{
+    let name: String
+    let aboveHorizon : Bool
 }
 
 
@@ -163,22 +142,18 @@ public final class spaceNewsAPI: NSObject {
     
 }
 
-struct spaceNewsAPIResponse: Decodable{
-    
+struct spaceNewsAPIResponse: Decodable, Hashable{
     let SpaceNewsMain: spaceNewsAPIMain
-    let spaceNews: [APISpaceNews]
 }
 
-struct spaceNewsAPIMain: Decodable {
-    let title: [String]
-    let url: [String]
-    let imageUrl: [String]
-    let newsSite: [String]
-    let summary : [String]
-    let publishedAt: [String]
+struct spaceNewsAPIMain: Decodable, Hashable {
+    let title: String
+    let url: String
+    let imageUrl: String
+    let newsSite: String
+    let summary : String
+    
     
     
 }
 
-struct APISpaceNews : Decodable{
-}

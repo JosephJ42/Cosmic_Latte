@@ -10,7 +10,7 @@ import SwiftUI
 struct MainView: View {
     
     //Planet Visability
-    var isMercuryVisable = false 
+    var isMercuryVisable = false
     var isVenusVisable = false
     var isMarsVisable = false
     var isJupiterVisable = false
@@ -20,6 +20,19 @@ struct MainView: View {
     var isPlutoVisable = false
     
     var moonStatus = "Waning Crescent"
+    
+    let date = Text(Date(),
+                    style: .date)
+    
+    let location = Text("Bristol")
+    
+    let prediction = Text("Fair")
+    
+    let skyInfo = Text ("Clear Sky")
+    
+    let visablePlanetList = Text("No planets")
+    
+    
     
     var body: some View {
         ZStack{
@@ -107,9 +120,15 @@ struct MainView: View {
                         .cornerRadius(15)
                     
                     HStack{
-                        Text("Date:")
+                    
+                        Text("Date: \(date)")
+                            .font(.system(size: 18, design: .default))
+                            
+                        
                         Spacer().frame(width: 50)
-                        Text("Location:")
+                        
+                        Text("Location: \(location)" )
+                            .font(.system(size: 18, design: .default))
                     }
                 }.frame(width: 360, height: 60, alignment: .top)
                 
@@ -120,11 +139,13 @@ struct MainView: View {
                         .background(Color("App textboxes and overlay"))
                         .cornerRadius(15)
                     
-                    HStack{
-                        Text("Stargazing Prediction:")
-                    }
-                
-                } .frame(width: 360, height: 60, alignment: .top)
+                    VStack(alignment: .leading){
+                        Text("Stargazing Prediction: \(prediction)")
+                            .font(.system(size: 18, design: .default))
+                        
+                    }.frame(width: 360, height: 60)
+
+                }.frame(width: 360, height: 60)
             
                 
                 ZStack{
@@ -134,15 +155,27 @@ struct MainView: View {
                         .background(Color("App textboxes and overlay"))
                         .cornerRadius(15)
                     
-                    VStack{
+                    VStack (alignment: .leading){
                         Text("Local Space Events:")
-                        Text("Misc Text")
+                            .font(.system(size: 18, design: .default))
+                            
+                            
+                        Text("Tonight the moon will be a \(moonStatus).")
+                            .font(.system(size: 16, design: .default))
+                        
+                        Text("\(visablePlanetList) will be visable from your location.")
+                            .font(.system(size: 16, design: .default))
+                        
+                        Spacer().frame(height: 20)
                         
                         Text("General Information:")
-                        Text("Misc text")
-                        Text("")
+                            .font(.system(size: 18, design: .default))
                         
-                    }
+                        Text("Conditions: \(skyInfo)")
+                            .font(.system(size: 16, design: .default))
+                    
+                        
+                    }.frame(width: 360, height: 200)
                 
                 }.frame(width: 360, height: 200, alignment: .top)
             }
@@ -153,5 +186,6 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+            
     }
 }
