@@ -19,6 +19,9 @@ struct MainView: View {
     var isNeptuneVisable = false
     var isPlutoVisable = false
     
+    var isOvercast = false
+    var isCloudy = false
+    
     var moonStatus = "Waning Crescent"
     
     let date = Text(Date(),
@@ -54,21 +57,27 @@ struct MainView: View {
                     
                     VStack{
                         
-                        Spacer().frame( height: 40)
+                        Spacer().frame( height: 55)
                         //Top Planet Row
                         HStack{
-                            Image("Neptune")
-                                .resizable()
-                                .frame(width: 75, height: 75, alignment: .center)
-                                .opacity(isNeptuneVisable ? 1:0)
+                            VStack{
+                                Spacer().frame( height: 20)
+                                Image("Neptune")
+                                    .resizable()
+                                    .frame(width: 75, height: 75, alignment: .center)
+                                    .opacity(isNeptuneVisable ? 1:0)
+                            }.frame(width: 75, height: 75, alignment: .center)
                             Image("Mercury")
                                 .resizable()
                                 .frame(width: 75, height: 75, alignment: .center)
                                 .opacity(isMercuryVisable ? 1:0)
-                            Image("Mars")
-                                .resizable()
-                                .frame(width: 75, height: 75, alignment: .center)
-                                .opacity(isMarsVisable ? 1:0)
+                            VStack{
+                                Spacer().frame( height: 20)
+                                Image("Mars")
+                                    .resizable()
+                                    .frame(width: 75, height: 75, alignment: .center)
+                                    .opacity(isMarsVisable ? 1:0)
+                            }.frame(width: 75, height: 75, alignment: .center)
                         }
                         
                         //Middle Planet Row
@@ -92,20 +101,90 @@ struct MainView: View {
                         
                         //Bottom (ha) Planet Row
                         HStack{
-                            Image("Jupiter")
-                                .resizable()
-                                .frame(width: 75, height: 75, alignment: .center)
-                                .opacity(isJupiterVisable ? 1:0)
+                            VStack{
+                                Image("Jupiter")
+                                    .resizable()
+                                    .frame(width: 75, height: 75, alignment: .center)
+                                    .opacity(isJupiterVisable ? 1:0)
+                                Spacer().frame( height: 20)
+                            }.frame(width: 75, height: 75, alignment: .center)
+                            
                             Image("Pluto")
                                 .resizable()
                                 .frame(width: 75, height: 75, alignment: .center)
                                 .opacity(isPlutoVisable ? 1:0)
-                            Image("Uranus") //ha
-                                .resizable()
-                                .frame(width: 75, height: 75, alignment: .center)
-                                .opacity(isUranusVisable ? 1:0)
+                            
+                            VStack{
+                                Image("Uranus") //ha
+                                    .resizable()
+                                    .frame(width: 75, height: 75, alignment: .center)
+                                    .opacity(isUranusVisable ? 1:0)
+                                Spacer().frame( height: 20)
+                                
+                            }.frame(width: 75, height: 75, alignment: .center)
                         }
                     }
+                    
+                    //The Cloud Stack
+                    ZStack{
+                        //Overcast
+                        VStack{
+
+                            Spacer().frame( height: 65)
+                            
+                            HStack{
+                            
+                            Image("Overcast")
+                                .resizable()
+                                .frame(width: 350, height: 270, alignment: .center)
+                                .opacity(isOvercast ? 1:0)
+                                
+                            }
+                        }.frame(width: 500, height: 355, alignment: .top)
+                        
+                        VStack{
+
+                            Spacer().frame( height: 50)
+                            VStack{
+                                
+                                HStack{
+                                    
+                                Image("Partly Cloudy")
+                                    .resizable()
+                                    .frame(width: 120, height: 120, alignment: .center)
+                                    .opacity(isCloudy ? 1:0)
+                                    
+                                    Spacer().frame( width: 150)
+                                    
+                                }
+                                
+                                HStack{
+                                    Image("Partly Cloudy")
+                                        .resizable()
+                                        .frame(width: 130, height: 130, alignment: .center)
+                                        .opacity(isCloudy ? 1:0)
+                                    
+                                    Spacer().frame( width: 120)
+                                    
+                                    VStack{
+                                        Image("Partly Cloudy")
+                                            .resizable()
+                                            .frame(width: 120, height: 120, alignment: .center)
+                                            .opacity(isCloudy ? 1:0)
+                                        
+                                        Spacer().frame(height: 50)
+                                    }
+                                    
+                                }
+                                
+                                
+                            }.frame(width: 500, height: 355, alignment: .top)
+                            
+                        }.frame(width: 500, height: 355, alignment: .top)
+                        
+                        
+                        
+                    }.frame(width: 500, height: 355, alignment: .top)
                     
                 }.frame(width: 500, height: 355, alignment: .top)
                  .ignoresSafeArea()
