@@ -11,17 +11,22 @@ import SwiftUI
 struct Cosmic_LatteApp: App {
     var body: some Scene {
         WindowGroup {
-//            let spaceNews = spaceNews() 
-//            let spaceNewsViewModel = spaceNewsViewModel(spaceNews: spaceNews)
-//
-//            let planets = planets()
-//            let planetsViewModel = planetViewModel(planets: planets)
-//
-//            let moonAndCloudCoverage = moonAndClouds()            
-//            let moonAndCloudCoverageViewModel = moonViewModel(moonAndClouds: moonAndCloudCoverage)
             
-            ContentView()
-            //spaceNewsViewModel: spaceNewsViewModel, planetsViewModel: planetsViewModel, moonAndCloudCoverageViewModel: moonAndCloudCoverageViewModel
+
+            let moonAndCloudCoverage = moonAndWeatherAPI()
+            
+            let moonAndCloudCoverageViewModel = moonViewModel(moonAndClouds: moonAndCloudCoverage)
+            
+            let planets = planetAPI()
+            let planetsViewModel = planetViewModel(planets: planets)
+            
+            
+            let spaceNews = spaceNewsAPI()
+            let spaceNewsViewModel = spaceNewsViewModel(spaceNews: spaceNews) 
+            
+            ContentView( moonAndCloudCoverageViewModel: moonAndCloudCoverageViewModel,
+                         planetsViewModel: planetsViewModel, spaceNewsViewModel: spaceNewsViewModel)
+            
 
         }
     }

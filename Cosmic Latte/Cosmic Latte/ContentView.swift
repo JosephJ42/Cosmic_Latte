@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     
-//    @ObservedObject var moonAndCloudCoverageViewModel: moonAndCloudCoverageViewModel
-//    @ObservedObject var planetsViewModel: planetsViewModel
-//    @ObservedObject var spaceNewsViewModel: spaceNewsViewModel
+    @ObservedObject var moonAndCloudCoverageViewModel: moonViewModel
+    @ObservedObject var planetsViewModel: planetViewModel
+    @ObservedObject var spaceNewsViewModel: spaceNewsViewModel
     
     
     let tabBackgroundColour = Color("App textboxes and overlay")
@@ -91,14 +91,17 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(
+            moonAndCloudCoverageViewModel: moonViewModel(moonAndClouds: moonAndWeatherAPI()),
+            planetsViewModel: planetViewModel(planets: planetAPI()),
+            spaceNewsViewModel: spaceNewsViewModel(spaceNews: spaceNewsAPI()))
+            
+        
             .preferredColorScheme(.light)
             .previewInterfaceOrientation(.portrait)
             .environment(\.locale, Locale(identifier: "en_GB"))
         
         
-        //moonAndCloudCoverageViewModel: moonAndCloudCoverageViewModel(),
-//    planetsViewModel: planetsViewModel(),
-//    spaceNewsViewModel: spaceNewsViewModel()
+
     }
 }

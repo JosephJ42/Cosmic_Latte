@@ -15,15 +15,15 @@ public class moonViewModel : ObservableObject {
     @Published var cloudCover : String = ""
     @Published var prediction : String = ""
     
-    public let moonAndClouds: moonAndClouds
+    public let moonAndClouds: moonAndWeatherAPI
     
-    public init (moonAndClouds: moonAndClouds){
+    public init (moonAndClouds: moonAndWeatherAPI){
         
         self.moonAndClouds = moonAndClouds
     }
     
     public func newsRefresh(){
-        moonAndWeatherAPI().getUsersLocation { moonAndCloudsInfo in DispatchQueue.main.async{
+        moonAndClouds.getUsersLocation { moonAndCloudsInfo in DispatchQueue.main.async{
             self.moonPhase =  moonPhaseCalculator(moonPhase: moonAndCloudsInfo.moonPhase)
             self.cloudCover = cloudCoverageCalculator(cloudCover: moonAndCloudsInfo.cloudCover)
             self.prediction = stargazingPrediction(moonPhase: moonAndCloudsInfo.moonPhase, cloudCover: moonAndCloudsInfo.cloudCover)
@@ -38,7 +38,7 @@ public func stargazingPrediction( moonPhase: Double, cloudCover: Int) -> String 
     var moonPhaseScore: Double
     var cloudCoverScore : Double
     
-    var moonPhaseText: String = moonPhaseCalculator(moonPhase: moonPhase)
+    let moonPhaseText: String = moonPhaseCalculator(moonPhase: moonPhase)
     
     switch moonPhaseText{
         
@@ -64,7 +64,7 @@ public func stargazingPrediction( moonPhase: Double, cloudCover: Int) -> String 
     
     //
     
-    var cloudCoverText: String = cloudCoverageCalculator(cloudCover: cloudCover)
+    let cloudCoverText: String = cloudCoverageCalculator(cloudCover: cloudCover)
     
     switch cloudCoverText{
         
@@ -82,9 +82,9 @@ public func stargazingPrediction( moonPhase: Double, cloudCover: Int) -> String 
     }
     
     // Prediction Caculations
-    var cloudCoverageCalcValue: Double = cloudCoverScore/100
-    var moonValueCalcValue: Double = moonPhaseScore/100
-    var predictionCalculatedValue : Double = (50*cloudCoverageCalcValue)+(50*moonValueCalcValue)
+    let cloudCoverageCalcValue: Double = cloudCoverScore/100
+    let moonValueCalcValue: Double = moonPhaseScore/100
+    let predictionCalculatedValue : Double = (50*cloudCoverageCalcValue)+(50*moonValueCalcValue)
 
 
     switch predictionCalculatedValue{
@@ -179,18 +179,19 @@ public class planetViewModel:ObservableObject{
     @Published var name : String = ""
     @Published var planetVisable : Bool = false
     
-    public let planets: planets
+    public let planets: planetAPI
     
-    public init (planets: planets){
+    public init (planets: planetAPI){
         self.planets = planets
     }
     
     public func planetVisibilityRefresh(){
-        self.name = planets.planetName
-        self.planetVisable = planets.visible
+        planets.getUsersLocation { planetInfo in DispatchQueue.main.async{
+        self.name = planetInfo.planetName
+        self.planetVisable = planetInfo.visible
+        }
+        }
     }
-    
-    
 }
 
 // Space news
@@ -203,20 +204,24 @@ public class spaceNewsViewModel: ObservableObject{
     @Published var newsImageUrl : String = ""
     @Published var newsArticleLinkUrl: String = ""
     
-    public let spaceNews: spaceNews
+    public let spaceNews: spaceNewsAPI
     
-    public init(spaceNews: spaceNews){
+    public init(spaceNews: spaceNewsAPI){
         self.spaceNews = spaceNews
     }
   
     public func newsRefresh(){
-        self.title = spaceNews.title
-        self.newsSource = spaceNews.newsSite
-        self.newsDescription = spaceNews.summary
-        self.newsImageUrl = spaceNews.imageUrl
-        self.newsArticleLinkUrl = spaceNews.url
+        spaceNews.getNewsData{ spaceNewsInfo in DispatchQueue.main.async {
+            self.title = spaceNewsInfo.title
+            self.newsSource = spaceNewsInfo.newsSite
+            self.newsDescription = spaceNewsInfo.summary
+            self.newsImageUrl = spaceNewsInfo.imageUrl
+            self.newsArticleLinkUrl = spaceNewsInfo.url
         
+            }
+        }
     }
+}
     
 // Old refresh keep got later use
 //    public func newsRefresh(){
@@ -229,7 +234,7 @@ public class spaceNewsViewModel: ObservableObject{
 //            }
 //        }
 //    }
-}
+
 
 
 

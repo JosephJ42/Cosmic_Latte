@@ -8,11 +8,13 @@
 import Foundation
 
 //Data model for moon phase and cloud coverage data
-public struct moonAndClouds{
+public struct moonAndClouds {
+    
     let moonPhase: Double
     let cloudCover: Int
     
     init(response: moonAndWeatherAPIResponse){
+        
         moonPhase = response.moonAndCloud.moon_phase
         cloudCover = response.moonAndCloud.clouds
     }

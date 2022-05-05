@@ -29,7 +29,7 @@ public final class moonAndWeatherAPI: NSObject, CLLocationManagerDelegate {
     
     private let getLocation = CLLocationManager()
     private let moonAndWeatherAPIKey = "fb4536a4745851c5a49cfcb7a2a5b13f"
-    private var completionHandler: ((moonAndClouds)-> Void)?
+    private var completionHandler: ((moonAndClouds) -> Void)?
     
     public func getUsersLocation(_ completionHandler: @escaping((moonAndClouds)-> Void)){
         self.completionHandler = completionHandler
@@ -54,13 +54,19 @@ public final class moonAndWeatherAPI: NSObject, CLLocationManagerDelegate {
 }
 
 
-struct moonAndWeatherAPIResponse: Decodable{
+struct moonAndWeatherAPIResponse: Decodable, Hashable{
     let moonAndCloud: moonAndWeatherAPIMain
 }
 
-struct moonAndWeatherAPIMain: Decodable {
+struct moonAndWeatherAPIMain: Decodable, Hashable {
     let moon_phase: Double
     let clouds : Int
+    
+    enum CodingKeys: CodingKey{
+        case moon_phase
+        case clouds
+        
+    }
 }
 
 
@@ -116,14 +122,43 @@ struct viewablePlanetsAPIResponse: Decodable, Hashable{
 struct planetsAPIMain: Decodable, Hashable{
     let name: String
     let aboveHorizon : Bool
+    
+    enum CodingKeys: CodingKey{
+        case name
+        case aboveHorizon
+    }
 }
 
 
 // Space news API
 
-public final class spaceNewsAPI: NSObject {
+public final class spaceNewsAPI: NSObject, CLLocationManagerDelegate {
     
+    public override init(){
+        super.init()
+        getLocation.delegate = self
+    }
+    
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else {return}
+        spaceNewsDataRequest()
+    }
+    
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Issue with data: \(error.localizedDescription)")
+    }
+    
+        
+    private let getLocation = CLLocationManager()
     private var completionHandler: ((spaceNews)-> Void)?
+    
+    
+    public func getNewsData(_ completionHandler: @escaping((spaceNews)-> Void)){
+            self.completionHandler = completionHandler
+            getLocation.requestWhenInUseAuthorization()
+            getLocation.startUpdatingLocation()
+    }
+    
     
     private func spaceNewsDataRequest(){
         guard let spaceNewsAPIString = "https://api.spaceflightnewsapi.net/v3/articles".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
@@ -153,6 +188,13 @@ struct spaceNewsAPIMain: Decodable, Hashable {
     let newsSite: String
     let summary : String
     
+    enum CodingKeys: CodingKey{
+        case title
+        case url
+        case imageUrl
+        case newsSite
+        case summary
+    }
     
     
 }
