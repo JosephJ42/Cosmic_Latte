@@ -11,9 +11,9 @@ import Foundation
 
 public class moonViewModel : ObservableObject {
     
-    @Published var moonPhase : String = ""
-    @Published var cloudCover : String = ""
-    @Published var prediction : String = ""
+    @Published var moonPhase : String = "New Moon"
+    @Published var cloudCover : String = "Partly Cloudy"
+    @Published var prediction : String = "Fair"
     
     public let moonAndClouds: moonAndWeatherAPI
     
@@ -22,7 +22,7 @@ public class moonViewModel : ObservableObject {
         self.moonAndClouds = moonAndClouds
     }
     
-    public func newsRefresh(){
+    public func refresh(){
         moonAndClouds.getUsersLocation { moonAndCloudsInfo in DispatchQueue.main.async{
             self.moonPhase =  moonPhaseCalculator(moonPhase: moonAndCloudsInfo.moonPhase)
             self.cloudCover = cloudCoverageCalculator(cloudCover: moonAndCloudsInfo.cloudCover)
@@ -143,7 +143,7 @@ public func moonPhaseCalculator( moonPhase: Double) -> String {
             moonPhaseString = "New Moon"
 
         default:
-            moonPhaseString = "No Moon"
+            moonPhaseString = ""
     }
     
     return moonPhaseString

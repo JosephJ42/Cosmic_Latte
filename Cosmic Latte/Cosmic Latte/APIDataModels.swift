@@ -8,7 +8,7 @@
 import Foundation
 
 //Data model for moon phase and cloud coverage data
-public struct moonAndClouds {
+public struct moonAndClouds : Hashable {
     
     let moonPhase: Double
     let cloudCover: Int
@@ -21,7 +21,7 @@ public struct moonAndClouds {
 }
 // data model for plants and their visibility
 
-public struct planets{
+public struct planets: Hashable{
     let planetName : String
     let visible: Bool
     
@@ -31,7 +31,7 @@ public struct planets{
     }
 }
 
-public struct spaceNews{
+public struct spaceNews: Hashable{
     let title: String
     let url: String
     let imageUrl: String

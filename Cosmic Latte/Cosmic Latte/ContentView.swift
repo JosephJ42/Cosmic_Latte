@@ -23,7 +23,7 @@ struct ContentView: View {
                             .ignoresSafeArea()
                         
                         VStack {
-                            MainView()
+                            MainView(viewModelOne: moonAndCloudCoverageViewModel, viewModelTwo: planetsViewModel)
                                 .padding()
                                 .frame(maxHeight: .infinity)
                                 .ignoresSafeArea()
@@ -47,7 +47,7 @@ struct ContentView: View {
                     .ignoresSafeArea()
                 
                 VStack {
-                    CondensedPredictionView()
+                    CondensedPredictionView(viewModelPrediction: moonAndCloudCoverageViewModel)
                         .padding()
                         .frame(maxHeight: .infinity)
                         .ignoresSafeArea()
@@ -69,7 +69,7 @@ struct ContentView: View {
                     .ignoresSafeArea()
                 
                 VStack {
-                    SpaceNewsView()
+                    SpaceNewsView(viewModelSpaceNews: spaceNewsViewModel)
                         .padding()
                         .frame(maxHeight: .infinity)
                         .ignoresSafeArea()

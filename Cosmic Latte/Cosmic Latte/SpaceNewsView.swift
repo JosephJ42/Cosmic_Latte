@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SpaceNewsView: View {
+    
+    @ObservedObject var viewModelSpaceNews: spaceNewsViewModel
+    
     var body: some View {
             ZStack{
                 Color("appBackground")
@@ -70,7 +73,7 @@ struct SpaceNewsView: View {
                         Spacer().frame(height: 98)
                         
                             VStack(spacing: 10){
-                                NewsRow() 
+                                NewsRow(viewModelSpaceNews: viewModelSpaceNews)
                                         .listRowInsets(EdgeInsets())
                                 
                                 }.frame(width: 360, height: 660)
@@ -83,30 +86,30 @@ struct SpaceNewsView: View {
     }
 
 
-struct SpaceNewsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SpaceNewsView()
-    }
-}
+//struct SpaceNewsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SpaceNewsView()
+//    }
+//}
 
 struct NewsRow: View {
     
-    //@ObservedObject var viewModel: spaceNewsViewModel
+    @ObservedObject var viewModelSpaceNews: spaceNewsViewModel
     
     var body: some View {
         HStack{
-            AsyncImage(url: URL(string: "")) //viewModel.newsImageUrl
+            AsyncImage(url: URL(string: viewModelSpaceNews.newsImageUrl)) //viewModel.newsImageUrl
                 .frame(width: 150, height: 100)
                 .cornerRadius(15)
                 
             
             Spacer().frame(width: 10)
             VStack{
-                Text("") //viewModel.title
-                Text("") //viewModel.newsSource
-                Text("") //viewModel.newsDescription
-            }//.onAppear(perform: spaceNews.newsRefresh)
+                Text(viewModelSpaceNews.title) //viewModel.title
+                Text(viewModelSpaceNews.newsSource) //viewModel.newsSource
+                Text(viewModelSpaceNews.newsDescription) //viewModel.newsDescription
+            }
 
-        }
+        }.onAppear(perform: viewModelSpaceNews.newsRefresh)
     }
 }

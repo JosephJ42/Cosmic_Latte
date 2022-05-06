@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CondensedPredictionView: View {
+    @ObservedObject var viewModelPrediction: moonViewModel
+    
     var body: some View {
             ZStack{
                 Color("appBackground")
@@ -71,8 +73,9 @@ struct CondensedPredictionView: View {
                         List(){
                             Text("Location:")
                             
-                            PredictionViewRow()
-                            
+                            PredictionViewRow(viewModelPrediction: viewModelPrediction )
+                            //ForEach(viewModelPrediction , id: \.self){
+                           // }
                             
                             
                             }.frame(width: 360, height: 660)
@@ -85,32 +88,35 @@ struct CondensedPredictionView: View {
             }
         }
 
-struct CondensedPredictionView_Previews: PreviewProvider {
-    static var previews: some View {
-        CondensedPredictionView()
-            .preferredColorScheme(.light)
-    }
-}
+//struct CondensedPredictionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CondensedPredictionView()
+//            .preferredColorScheme(.light)
+//    }
+//}
 
 struct PredictionViewRow: View {
     
-    //@ObservedObject var viewModel: moonViewModel
-    
-    
+    @ObservedObject var viewModelPrediction: moonViewModel
     
     var body: some View {
         HStack{
             //image
-            Image("Full Moon")
+            Image(viewModelPrediction.moonPhase)
             
             Spacer().frame(width: 20)
             //Text V stack
-            VStack{
-                Text("Date:")
-                Text("Prediction:")
-                Text("Conditions:")
+            VStack(alignment: .leading){
+               var date = Text(Date(), style: .date)
+                
+                Text("Date: \(date) ")
+                    .font(.system(size: 16, design: .default))
+                Text("Prediction: \(viewModelPrediction.prediction)")
+                    .font(.system(size: 16, design: .default))
+                Text("Conditions: \(viewModelPrediction.cloudCover) ")
+                    .font(.system(size: 16, design: .default))
             }.frame(alignment: .leading)
             
-        }
+        }.onAppear(perform: viewModelPrediction.refresh)
     }
 }

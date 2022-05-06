@@ -8,36 +8,40 @@
 import SwiftUI
 
 struct MainView: View {
-    
-    //Planet Visability
-    var isMercuryVisable = false
-    var isVenusVisable = false
-    var isMarsVisable = false
-    var isJupiterVisable = false
-    var isSaturnVisable = false
-    var isUranusVisable = false
-    var isNeptuneVisable = false
-    var isPlutoVisable = false
-    
-    var isOvercast = false
-    var isCloudy = false
-    
-    var moonStatus = "Waning Crescent"
-    
-    let date = Text(Date(),
-                    style: .date)
-    
-    let location = Text("Bristol")
-    
-    let prediction = Text("Fair")
-    
-    let skyInfo = Text ("Clear Sky")
-    
-    let visablePlanetList = Text("No planets")
-    
-    
-    
+    //API View model
+    @ObservedObject var viewModelOne: moonViewModel
+    @ObservedObject var viewModelTwo: planetViewModel
+
+
     var body: some View {
+        
+        //Planet Visability
+        let isMercuryVisable = false
+        let isVenusVisable = false
+        let isMarsVisable = false
+        let isJupiterVisable = false
+        let isSaturnVisable = false
+        let isUranusVisable = false
+        let isNeptuneVisable = false
+        let isPlutoVisable = false
+        
+        let isOvercast = false
+        let isCloudy = false
+        
+        let moonStatus = viewModelOne.moonPhase
+        
+        let date = Text(Date(),
+                        style: .date)
+        
+        let location = Text("Bristol")
+        
+        let prediction = viewModelOne.prediction
+        
+        let skyInfo = viewModelOne.cloudCover
+        
+        let visablePlanetList = Text("No planets")
+        
+        
         ZStack{
             Color("appBackground")
                 .ignoresSafeArea()
@@ -258,13 +262,14 @@ struct MainView: View {
                 
                 }.frame(width: 360, height: 200, alignment: .top)
             }
-        }
+        }.onAppear(perform: viewModelOne.refresh)
+         .onAppear(perform: viewModelTwo.planetVisibilityRefresh)
     }
 }
 
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
-            
-    }
-}
+//struct MainView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MainView(viewModelOne: moonViewModel)
+//
+//    }
+//}
