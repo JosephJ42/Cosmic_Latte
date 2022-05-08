@@ -6,14 +6,17 @@
 //
 
 import Foundation
+import CoreLocation
+import MapKit
 
 // Moon and Weather
 
 public class moonViewModel : ObservableObject {
     
-    @Published var moonPhase : String = "New Moon"
-    @Published var cloudCover : String = "Partly Cloudy"
-    @Published var prediction : String = "Fair"
+    @Published var location : String = "No Location"
+    @Published var moonPhase : String = "Full Moon"
+    @Published var cloudCover : String = "Null"
+    @Published var prediction : String = "Null"
     
     public let moonAndClouds: moonAndWeatherAPI
     
@@ -24,13 +27,30 @@ public class moonViewModel : ObservableObject {
     
     public func refresh(){
         moonAndClouds.getUsersLocation { moonAndCloudsInfo in DispatchQueue.main.async{
+            
+//            self.location = getLocationString()
             self.moonPhase =  moonPhaseCalculator(moonPhase: moonAndCloudsInfo.moonPhase)
             self.cloudCover = cloudCoverageCalculator(cloudCover: moonAndCloudsInfo.cloudCover)
             self.prediction = stargazingPrediction(moonPhase: moonAndCloudsInfo.moonPhase, cloudCover: moonAndCloudsInfo.cloudCover)
+            
         }
     }
 }
 }
+
+//public func getLocationString() -> String {
+//
+//    let locationManger = getLocation()
+//
+//    let location = locationManger.location != nil ? locationManger.location!.coordinate : CLLocationCoordinate2D()
+//
+//    let city = locationManger.locationCityGlobal
+//
+//    return city
+//}
+
+
+
 
 public func stargazingPrediction( moonPhase: Double, cloudCover: Int) -> String {
     
@@ -223,21 +243,73 @@ public class spaceNewsViewModel: ObservableObject{
     }
 }
     
-// Old refresh keep got later use
-//    public func newsRefresh(){
-//        spaceNewsAPI{ spaceNews in DispatchQueue.main.async {
-//                self?.title = spaceNews.title
-//                self?.newsSource = spaceNews.newsSite
-//                self?.newsDescription = spaceNews.summary
-//                self?.newsImageUrl = spaceNews.imageUrl
-//                self?.newsArticleLinkUrl = spaceNews.url
-//            }
-//        }
-//    }
 
+// The below code has been adepted from the following link
+//
+//
+public class getLocation: NSObject, ObservableObject{
+    
+    private let locationManager = CLLocationManager()
+    @Published var location : CLLocation? = nil
+    @Published var locationNameGlobal : CLLocation? = nil
+    @Published var locationCityGlobal : String? = nil
+    @Published var locationCountryNameGlobal : String? = nil
+    
+    
+    override init(){
+        super.init()
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.distanceFilter = kCLDistanceFilterNone
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
+        
+    }
+}
 
+extension getLocation: CLLocationManagerDelegate{
+    
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
+        
+        guard let location = locations.last else{
+            return
+        }
+        
+        self.location = location
+        
+        
+        let geoCoder = CLGeocoder()
+        let locationToGetName = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude )
+        
+               geoCoder.reverseGeocodeLocation(locationToGetName, completionHandler:
+                   {
+                       placemarks, error -> Void in
 
+                       // Place details
+                       guard let placeMark = placemarks?.first else { return }
 
-
+                       // Location name
+                       if let locationName = placeMark.location {
+                           print(locationName)
+                           self.locationNameGlobal = locationName
+                           print(self.locationNameGlobal!)
+                       }
+                       // City
+                       if let city = placeMark.subAdministrativeArea {
+                           print(city)
+                           self.locationCityGlobal = placeMark.subAdministrativeArea!
+                           print(self.locationCityGlobal!)
+                          
+                       }
+                       // Country
+                       if let country = placeMark.country {
+                           print(country)
+                           self.locationCountryNameGlobal = placeMark.country!
+                           print(self.locationCountryNameGlobal!)
+                       }
+               })
+    }
+    
+}
 
 

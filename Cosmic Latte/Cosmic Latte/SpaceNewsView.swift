@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SpaceNewsView: View {
     
+    
+    
     @ObservedObject var viewModelSpaceNews: spaceNewsViewModel
     
     var body: some View {

@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import CoreLocation
+import MapKit
 
 struct MainView: View {
     //API View model
     @ObservedObject var viewModelOne: moonViewModel
     @ObservedObject var viewModelTwo: planetViewModel
+    @ObservedObject private var locationManger = getLocation()
 
 
     var body: some View {
@@ -33,7 +36,7 @@ struct MainView: View {
         let date = Text(Date(),
                         style: .date)
         
-        let location = Text("Bristol")
+        let location = "\(locationManger.locationCityGlobal ?? "")"
         
         let prediction = viewModelOne.prediction
         
@@ -208,10 +211,13 @@ struct MainView: View {
                             .font(.system(size: 18, design: .default))
                             
                         
-                        Spacer().frame(width: 50)
+                        Spacer().frame(width: 20)
                         
                         Text("Location: \(location)" )
                             .font(.system(size: 18, design: .default))
+                        
+//                        Text("Location: \(formattedLat), \(formattedLon)" )
+//                            .font(.system(size: 18, design: .default))
                     }
                 }.frame(width: 360, height: 60, alignment: .top)
                 

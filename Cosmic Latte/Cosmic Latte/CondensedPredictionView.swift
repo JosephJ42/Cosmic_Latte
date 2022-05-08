@@ -6,11 +6,17 @@
 //
 
 import SwiftUI
+import CoreLocation
+import MapKit
 
 struct CondensedPredictionView: View {
     @ObservedObject var viewModelPrediction: moonViewModel
+    @ObservedObject private var locationManger = getLocation()
     
     var body: some View {
+        
+        let location = "\(locationManger.locationCityGlobal ?? "")"
+        
             ZStack{
                 Color("appBackground")
                     .ignoresSafeArea()
@@ -71,7 +77,7 @@ struct CondensedPredictionView: View {
                     VStack{
                         Spacer().frame(height: 98)
                         List(){
-                            Text("Location:")
+                            Text("Location: \(location)")
                             
                             PredictionViewRow(viewModelPrediction: viewModelPrediction )
                             //ForEach(viewModelPrediction , id: \.self){
@@ -100,6 +106,10 @@ struct PredictionViewRow: View {
     @ObservedObject var viewModelPrediction: moonViewModel
     
     var body: some View {
+        
+        let date = Text(Date(),
+                        style: .date)
+        
         HStack{
             //image
             Image(viewModelPrediction.moonPhase)
@@ -107,9 +117,8 @@ struct PredictionViewRow: View {
             Spacer().frame(width: 20)
             //Text V stack
             VStack(alignment: .leading){
-               var date = Text(Date(), style: .date)
                 
-                Text("Date: \(date) ")
+                Text("Date: \(date)")
                     .font(.system(size: 16, design: .default))
                 Text("Prediction: \(viewModelPrediction.prediction)")
                     .font(.system(size: 16, design: .default))

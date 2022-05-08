@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import MapKit
 
 //Moon and cloud cover API request based on location
 
@@ -40,6 +41,8 @@ public final class moonAndWeatherAPI: NSObject, CLLocationManagerDelegate {
     private func makeMoonAndCloudDataRequest(forCoordinates coordinates: CLLocationCoordinate2D){
             guard let moonAndCloudAPIString = "https://api.openweathermap.org/data/2.5/onecall?lat=\(coordinates.latitude)&lon=\(coordinates.longitude)&exclude=hourly&appid=\(moonAndWeatherAPIKey)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             else {return}
+        
+            print("Moon and cloud API request Running")
             
             guard let url = URL(string: moonAndCloudAPIString) else {return}
             
@@ -103,6 +106,8 @@ public final class planetAPI: NSObject, CLLocationManagerDelegate {
             guard let planetAPIString = "https://visible-planets-api.herokuapp.com/v2?latitude=\(coordinates.latitude)&longitude=\(coordinates.longitude)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             else {return}
             
+            print("Planet API request Running")
+            
             guard let url = URL(string: planetAPIString) else {return}
             
             URLSession.shared.dataTask(with: url){ data, response, error in guard error == nil, let data = data else {return}
@@ -162,7 +167,9 @@ public final class spaceNewsAPI: NSObject, CLLocationManagerDelegate {
     private func spaceNewsDataRequest(){
         guard let spaceNewsAPIString = "https://api.spaceflightnewsapi.net/v3/articles".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         else {return}
-            
+        
+        print("Space New API request Running")
+        
         guard let url = URL(string: spaceNewsAPIString) else {return}
             
         URLSession.shared.dataTask(with: url){ data, response, error in guard error == nil, let data = data else {return}
@@ -197,4 +204,83 @@ struct spaceNewsAPIMain: Decodable, Hashable {
     
     
 }
+
+// Get City base of GPS lon and Lat
+// code provide by ....
+
+//class LocationManager: NSObject, ObservableObject {
+//
+//private let locationManager = CLLocationManager()
+//@Published var location: CLLocation? = nil
+//
+//override init() {
+//    super.init()
+//    self.locationManager.delegate = self
+//    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//    self.locationManager.distanceFilter = kCLDistanceFilterNone
+//    self.locationManager.requestWhenInUseAuthorization()
+//    self.locationManager.startUpdatingLocation()
+//    }
+//}
+//
+//
+//class ViewController: UIViewController, CLLocationManagerDelegate {
+//
+//    let locationManager = CLLocationManager()
+//
+//override func viewDidLoad() {
+//    super.viewDidLoad()
+//
+//    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//    locationManager.delegate = self
+//}
+//
+//// MARK: - CLLocationManagerDelegate
+//func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+//    switch status {
+//    case .notDetermined:
+//        print("notDetermined")
+//        manager.requestWhenInUseAuthorization()
+//    default:
+//        break
+//        }
+//    }
+//}
+//
+//extension LocationManager: CLLocationManagerDelegate {
+//func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation], forCoordinates coordinates: CLLocationCoordinate2D) {
+//
+//    let geoCoder = CLGeocoder()
+//    let location = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
+//           geoCoder.reverseGeocodeLocation(location, completionHandler:
+//               {
+//                   placemarks, error -> Void in
+//
+//                   // Place details
+//                   guard let placeMark = placemarks?.first else { return }
+//
+//                   // Location name
+//                   if let locationName = placeMark.location {
+//                       print(locationName)
+//                   }
+//                   // Street address
+//                   if let street = placeMark.thoroughfare {
+//                       print(street)
+//                   }
+//                   // City
+//                   if let city = placeMark.subAdministrativeArea {
+//                       print(city)
+//                   }
+//                   // Zip code
+//                   if let zip = placeMark.isoCountryCode {
+//                       print(zip)
+//                   }
+//                   // Country
+//                   if let country = placeMark.country {
+//                       print(country)
+//                   }
+//           })
+//}
+//}
+
 

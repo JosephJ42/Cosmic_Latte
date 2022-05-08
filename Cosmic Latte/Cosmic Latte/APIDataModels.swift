@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 //Data model for moon phase and cloud coverage data
 public struct moonAndClouds : Hashable {
@@ -47,3 +48,7 @@ public struct spaceNews: Hashable{
         
     }
 }
+
+//
+//
+
