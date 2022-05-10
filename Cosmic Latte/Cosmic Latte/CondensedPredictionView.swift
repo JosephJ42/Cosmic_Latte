@@ -13,6 +13,8 @@ struct CondensedPredictionView: View {
     @ObservedObject var viewModelPrediction: moonViewModel
     @ObservedObject private var locationManger = getLocation()
     
+    //let dateList = 
+    
     var body: some View {
         
         let location = "\(locationManger.locationCityGlobal ?? "")"
@@ -79,20 +81,20 @@ struct CondensedPredictionView: View {
                         List(){
                             Text("Location: \(location)")
                             
-                            PredictionViewRow(viewModelPrediction: viewModelPrediction )
-                            //ForEach(viewModelPrediction , id: \.self){
-                           // }
+                            ForEach(0..<7){ number in
                             
+                                PredictionViewRow(viewModelPrediction: viewModelPrediction )
+                            }
                             
-                            }.frame(width: 360, height: 660)
+                        }.frame(width: 360, height: 680)
                              .background(Color("App textboxes and overlay"))
                              .cornerRadius(15)
-                        }
-                    
                     }
+                    
                 }
             }
         }
+    }
 
 //struct CondensedPredictionView_Previews: PreviewProvider {
 //    static var previews: some View {
@@ -112,9 +114,9 @@ struct PredictionViewRow: View {
         
         HStack{
             //image
-            Image(viewModelPrediction.moonPhase)
+            Image(viewModelPrediction.moonPhase).resizable().frame(width: 70, height: 70)
             
-            Spacer().frame(width: 20)
+            Spacer().frame(width: 24)
             //Text V stack
             VStack(alignment: .leading){
                 
@@ -127,5 +129,7 @@ struct PredictionViewRow: View {
             }.frame(alignment: .leading)
             
         }.onAppear(perform: viewModelPrediction.refresh)
+         //.frame(width: 51, height: 97)
+            
     }
 }

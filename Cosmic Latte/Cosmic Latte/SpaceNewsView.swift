@@ -73,12 +73,16 @@ struct SpaceNewsView: View {
                 ZStack{
                     ScrollView(){
                         Spacer().frame(height: 98)
-                        
-                            VStack(spacing: 10){
-                                NewsRow(viewModelSpaceNews: viewModelSpaceNews)
-                                        .listRowInsets(EdgeInsets())
-                                
-                                }.frame(width: 360, height: 660)
+    
+                            VStack(){
+                                List(){
+                                    ForEach(0..<7){ number in
+                                        NewsRow(viewModelSpaceNews: viewModelSpaceNews)
+                                            .listRowInsets(.init(top: 5, leading: 10, bottom: 5, trailing: 10))
+//                                                .listRowInsets(EdgeInsets())
+                                    }
+                                }
+                            }.frame(width: 360, height: 660)
                                      .background(Color("App textboxes and overlay"))
                                      .cornerRadius(15)
                         }
@@ -106,10 +110,13 @@ struct NewsRow: View {
                 
             
             Spacer().frame(width: 10)
-            VStack{
+            VStack(alignment: .leading){
                 Text(viewModelSpaceNews.title) //viewModel.title
+                    .font(.system(size: 16, design: .default))
                 Text(viewModelSpaceNews.newsSource) //viewModel.newsSource
+                    .font(.system(size: 14, design: .default))
                 Text(viewModelSpaceNews.newsDescription) //viewModel.newsDescription
+                    .font(.system(size: 14, design: .default))
             }
 
         }.onAppear(perform: viewModelSpaceNews.newsRefresh)

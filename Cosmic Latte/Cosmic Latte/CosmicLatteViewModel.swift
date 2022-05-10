@@ -13,6 +13,7 @@ import MapKit
 
 public class moonViewModel : ObservableObject {
     
+    @Published var date: String = "No date"
     @Published var location : String = "No Location"
     @Published var moonPhase : String = "Full Moon"
     @Published var cloudCover : String = "Null"
@@ -27,7 +28,7 @@ public class moonViewModel : ObservableObject {
     
     public func refresh(){
         moonAndClouds.getUsersLocation { moonAndCloudsInfo in DispatchQueue.main.async{
-            
+// self.date = getDateString()
 //            self.location = getLocationString()
             self.moonPhase =  moonPhaseCalculator(moonPhase: moonAndCloudsInfo.moonPhase)
             self.cloudCover = cloudCoverageCalculator(cloudCover: moonAndCloudsInfo.cloudCover)
@@ -51,7 +52,7 @@ public class moonViewModel : ObservableObject {
 
 
 
-
+//
 public func stargazingPrediction( moonPhase: Double, cloudCover: Int) -> String {
     
     var prediction: String = ""
@@ -131,6 +132,7 @@ public func stargazingPrediction( moonPhase: Double, cloudCover: Int) -> String 
     return prediction
 }
 
+//
 public func moonPhaseCalculator( moonPhase: Double) -> String {
     var moonPhaseString: String = ""
     
@@ -169,6 +171,7 @@ public func moonPhaseCalculator( moonPhase: Double) -> String {
     return moonPhaseString
 }
 
+//
 public func cloudCoverageCalculator(cloudCover: Int) -> String {
     
     var cloudCoverageString: String = ""
@@ -245,8 +248,7 @@ public class spaceNewsViewModel: ObservableObject{
     
 
 // The below code has been adepted from the following link
-//
-//
+//https://stackoverflow.com/questions/62704004/swiftui-get-city-locality-information-from-users-location
 public class getLocation: NSObject, ObservableObject{
     
     private let locationManager = CLLocationManager()
@@ -311,5 +313,3 @@ extension getLocation: CLLocationManagerDelegate{
     }
     
 }
-
-
