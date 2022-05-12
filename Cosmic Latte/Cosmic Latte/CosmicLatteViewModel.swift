@@ -28,8 +28,8 @@ public class moonViewModel : ObservableObject {
     
     public func refresh(){
         moonAndClouds.getUsersLocation { moonAndCloudsInfo in DispatchQueue.main.async{
-// self.date = getDateString()
-//            self.location = getLocationString()
+            // self.date = getDateString()
+            self.location = getLocationString()
             self.moonPhase =  moonPhaseCalculator(moonPhase: moonAndCloudsInfo.moonPhase)
             self.cloudCover = cloudCoverageCalculator(cloudCover: moonAndCloudsInfo.cloudCover)
             self.prediction = stargazingPrediction(moonPhase: moonAndCloudsInfo.moonPhase, cloudCover: moonAndCloudsInfo.cloudCover)
@@ -39,16 +39,16 @@ public class moonViewModel : ObservableObject {
 }
 }
 
-//public func getLocationString() -> String {
-//
-//    let locationManger = getLocation()
-//
-//    let location = locationManger.location != nil ? locationManger.location!.coordinate : CLLocationCoordinate2D()
-//
-//    let city = locationManger.locationCityGlobal
-//
-//    return city
-//}
+public func getLocationString() -> String {
+
+    let locationManger = getLocation()
+
+    let location = locationManger.location != nil ? locationManger.location!.coordinate : CLLocationCoordinate2D()
+
+    let city = locationManger.locationCityGlobal ?? ""
+
+    return city
+}
 
 
 

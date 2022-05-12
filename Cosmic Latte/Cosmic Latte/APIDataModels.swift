@@ -27,12 +27,19 @@ public struct planets: Hashable{
     let visible: Bool
     
     init(response: viewablePlanetsAPIResponse) {
-        planetName = "\(response.planetsData.name)"
-        visible = response.planetsData.aboveHorizon
+        
+        planetName = response.data.first?.name ?? ""
+        visible = ((response.data.first?.aboveHorizon) != nil)
+        
+        
+        
+//        planetName = "\(response.planetsData.name)"
+//        visible = response.planetsData.aboveHorizon
     }
 }
 
-public struct spaceNews: Hashable{
+public struct spaceNews{
+    
     let title: String
     let url: String
     let imageUrl: String
@@ -40,15 +47,32 @@ public struct spaceNews: Hashable{
     let summary : String
     
     init(response: spaceNewsAPIResponse){
-        title = response.SpaceNewsMain.title 
-        url = response.SpaceNewsMain.url
-        imageUrl = response.SpaceNewsMain.imageUrl
-        newsSite = response.SpaceNewsMain.newsSite
-        summary = response.SpaceNewsMain.summary
         
+        title = response.title ?? ""
+        url = response.url ?? ""
+        imageUrl = response.imageUrl ?? ""
+        newsSite = response.newsSite ?? ""
+        summary = response.summary ?? ""
+        
+
+        
+        
+        
+        
+//        title = response.Article.first?.title ?? ""
+//        url = response.Article.first?.url ?? ""
+//        imageUrl = response.Article.first?.imageUrl ?? ""
+//        newsSite = response.Article.first?.newsSite ?? ""
+//        summary = response.Article.first?.summary ?? ""
+            
     }
 }
 
-//
+// old code, clean up before submission
 //
 
+//        title = response.SpaceNewsMain.title
+//        url = response.SpaceNewsMain.url
+//        imageUrl = response.SpaceNewsMain.imageUrl
+//        newsSite = response.SpaceNewsMain.newsSite
+//        summary = response.SpaceNewsMain.summary

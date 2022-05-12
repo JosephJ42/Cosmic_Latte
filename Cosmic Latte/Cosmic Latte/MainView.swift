@@ -36,7 +36,9 @@ struct MainView: View {
         let date = Text(Date(),
                         style: .date)
         
-        let location = "\(locationManger.locationCityGlobal ?? "")"
+        let location = "\(viewModelOne.location)"
+        
+        //let location = "\(locationManger.locationCityGlobal ?? "")"
         
         let prediction = viewModelOne.prediction
         

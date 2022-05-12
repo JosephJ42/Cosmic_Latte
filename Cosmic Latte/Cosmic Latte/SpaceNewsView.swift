@@ -102,6 +102,8 @@ struct NewsRow: View {
     
     @ObservedObject var viewModelSpaceNews: spaceNewsViewModel
     
+    
+    
     var body: some View {
         HStack{
             AsyncImage(url: URL(string: viewModelSpaceNews.newsImageUrl)) //viewModel.newsImageUrl
@@ -117,6 +119,7 @@ struct NewsRow: View {
                     .font(.system(size: 14, design: .default))
                 Text(viewModelSpaceNews.newsDescription) //viewModel.newsDescription
                     .font(.system(size: 14, design: .default))
+                    
             }
 
         }.onAppear(perform: viewModelSpaceNews.newsRefresh)

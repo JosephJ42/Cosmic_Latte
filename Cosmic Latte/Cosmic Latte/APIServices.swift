@@ -52,16 +52,21 @@ public final class moonAndWeatherAPI: NSObject, CLLocationManagerDelegate {
                 if let response = try? JSONDecoder().decode(moonAndWeatherAPIResponse.self, from: data){
                     self.completionHandler?(moonAndClouds(response: response))
                 }
+                
+                print("At Moon Response")
+                print(response)
+                
+                
             }.resume()
     }
 }
 
 
-struct moonAndWeatherAPIResponse: Decodable, Hashable{
-    let moonAndCloud: moonAndWeatherAPIMain
+struct moonAndWeatherAPIResponse: Decodable{
+    let daily: [moonAndWeatherAPIMain]
 }
 
-struct moonAndWeatherAPIMain: Decodable, Hashable {
+struct moonAndWeatherAPIMain: Decodable {
     let moon_phase: Double
     let clouds : Int
     
@@ -115,13 +120,17 @@ public final class planetAPI: NSObject, CLLocationManagerDelegate {
                 if let response = try? JSONDecoder().decode(viewablePlanetsAPIResponse.self, from: data){
                 self.completionHandler?(planets(response: response))
             }
+                
+                print("At Planet Response")
+                print(response)
+                
         }.resume()
     }
 }
 
 
 struct viewablePlanetsAPIResponse: Decodable, Hashable{
-    let planetsData: planetsAPIMain
+    let data: [planetsAPIMain]
 }
 
 struct planetsAPIMain: Decodable, Hashable{
@@ -175,31 +184,42 @@ public final class spaceNewsAPI: NSObject, CLLocationManagerDelegate {
         URLSession.shared.dataTask(with: url){ data, response, error in guard error == nil, let data = data else {return}
             
             if let response = try? JSONDecoder().decode(spaceNewsAPIResponse.self, from: data){
-            self.completionHandler?(spaceNews(response: response))
+                self.completionHandler?(spaceNews(response: response))
             }
+            
+            print("At Spacew news Response")
+            print(response)
         }.resume()
     }
     
     
 }
 
-struct spaceNewsAPIResponse: Decodable, Hashable{
-    let SpaceNewsMain: spaceNewsAPIMain
+struct spaceNewsAPIResponse: Decodable{
+    
+    let title: String?
+    let url: String?
+    let imageUrl: String?
+    let newsSite: String?
+    let summary : String?
+    
+    enum CodingKeys: CodingKey{
+        case title, url, imageUrl, newsSite, summary
+    }
+    
+    //typealias is used to handle issue with this data consisting of an unnamed array of dictionaries
+    //let Article : [spaceNewsAPIMain]
 }
 
 struct spaceNewsAPIMain: Decodable, Hashable {
-    let title: String
-    let url: String
-    let imageUrl: String
-    let newsSite: String
-    let summary : String
+    let title: String?
+    let url: String?
+    let imageUrl: String?
+    let newsSite: String?
+    let summary : String?
     
     enum CodingKeys: CodingKey{
-        case title
-        case url
-        case imageUrl
-        case newsSite
-        case summary
+        case title, url, imageUrl, newsSite, summary
     }
     
     
