@@ -41,14 +41,92 @@ public class moonViewModel : ObservableObject {
 
 public func getLocationString() -> String {
 
-    let locationManger = getLocation()
+    var locationManger = getLocation()
 
-    let location = locationManger.location != nil ? locationManger.location!.coordinate : CLLocationCoordinate2D()
-
-    let city = locationManger.locationCityGlobal ?? ""
-
+    //let location = locationManger.location != nil ? locationManger.location!.coordinate : CLLocationCoordinate2D()
+    
+    let city : String = locationManger.locationCityGlobal ?? ""
+ 
+    print("the City is: \(locationManger.locationCityGlobal ?? "")")
+    
     return city
 }
+
+// The below code has been adepted from the following link
+//https://stackoverflow.com/questions/62704004/swiftui-get-city-locality-information-from-users-location
+public class getLocation: NSObject, ObservableObject{
+    
+    private let locationManager = CLLocationManager()
+    @Published var location : CLLocation? = nil
+    @Published var locationNameGlobal : CLLocation? = nil
+    @Published var locationCityGlobal : String? = nil
+    @Published var locationCountryNameGlobal : String? = nil
+    
+    
+    override init(){
+        super.init()
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.distanceFilter = kCLDistanceFilterNone
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
+        
+    }
+}
+
+extension getLocation: CLLocationManagerDelegate{
+    
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
+        
+        guard let location = locations.last else{
+            return
+        }
+        
+        self.location = location
+        
+        
+        let geoCoder = CLGeocoder()
+        let locationToGetName = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude )
+        
+               geoCoder.reverseGeocodeLocation(locationToGetName, completionHandler:
+                   {
+                       placemarks, error -> Void in
+
+                       // Place details
+                       guard let placeMark = placemarks?.first else { return }
+
+                       // Location name
+                       if let locationName = placeMark.location {
+                           //print(locationName)
+                           self.locationNameGlobal = locationName
+                           //print(self.locationNameGlobal!)
+                       }
+                       // City
+                       if let city = placeMark.subAdministrativeArea {
+                           print(city)
+                           self.locationCityGlobal = placeMark.subAdministrativeArea!
+                           print(self.locationCityGlobal!)
+                          
+                       }
+                       // Country
+                       if let country = placeMark.country {
+                           //print(country)
+                           self.locationCountryNameGlobal = placeMark.country!
+                           //print(self.locationCountryNameGlobal!)
+                       }
+               })
+    }
+    
+}
+
+//Adepted code ends
+
+
+
+
+
+
+
 
 
 
@@ -247,69 +325,4 @@ public class spaceNewsViewModel: ObservableObject{
 }
     
 
-// The below code has been adepted from the following link
-//https://stackoverflow.com/questions/62704004/swiftui-get-city-locality-information-from-users-location
-public class getLocation: NSObject, ObservableObject{
-    
-    private let locationManager = CLLocationManager()
-    @Published var location : CLLocation? = nil
-    @Published var locationNameGlobal : CLLocation? = nil
-    @Published var locationCityGlobal : String? = nil
-    @Published var locationCountryNameGlobal : String? = nil
-    
-    
-    override init(){
-        super.init()
-        self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.distanceFilter = kCLDistanceFilterNone
-        self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.startUpdatingLocation()
-        
-    }
-}
 
-extension getLocation: CLLocationManagerDelegate{
-    
-    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
-        
-        guard let location = locations.last else{
-            return
-        }
-        
-        self.location = location
-        
-        
-        let geoCoder = CLGeocoder()
-        let locationToGetName = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude )
-        
-               geoCoder.reverseGeocodeLocation(locationToGetName, completionHandler:
-                   {
-                       placemarks, error -> Void in
-
-                       // Place details
-                       guard let placeMark = placemarks?.first else { return }
-
-                       // Location name
-                       if let locationName = placeMark.location {
-                           print(locationName)
-                           self.locationNameGlobal = locationName
-                           print(self.locationNameGlobal!)
-                       }
-                       // City
-                       if let city = placeMark.subAdministrativeArea {
-                           print(city)
-                           self.locationCityGlobal = placeMark.subAdministrativeArea!
-                           print(self.locationCityGlobal!)
-                          
-                       }
-                       // Country
-                       if let country = placeMark.country {
-                           print(country)
-                           self.locationCountryNameGlobal = placeMark.country!
-                           print(self.locationCountryNameGlobal!)
-                       }
-               })
-    }
-    
-}

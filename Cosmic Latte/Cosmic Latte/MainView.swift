@@ -9,13 +9,15 @@ import SwiftUI
 import CoreLocation
 import MapKit
 
+
 struct MainView: View {
     //API View model
     @ObservedObject var viewModelOne: moonViewModel
     @ObservedObject var viewModelTwo: planetViewModel
     @ObservedObject private var locationManger = getLocation()
-
-
+    
+    
+    
     var body: some View {
         
         //Planet Visability
@@ -28,21 +30,32 @@ struct MainView: View {
         let isNeptuneVisable = false
         let isPlutoVisable = false
         
-        let isOvercast = false
-        let isCloudy = false
         
         let moonStatus = viewModelOne.moonPhase
         
         let date = Text(Date(),
                         style: .date)
         
-        let location = "\(viewModelOne.location)"
+        //let location = "\(viewModelOne.location)"
         
-        //let location = "\(locationManger.locationCityGlobal ?? "")"
+        let location = "\(locationManger.locationCityGlobal ?? "")"
         
         let prediction = viewModelOne.prediction
         
-        let skyInfo = viewModelOne.cloudCover
+        let skyInfo = "\(viewModelOne.cloudCover)"
+        
+        
+        
+//        if skyInfo == "Partly Cloudy" {
+//            isCloudy = true
+//        }
+//        else if skyInfo == "Overcast"{
+//            isOvercast = true
+//        }
+//        else{
+//            print("All Clear")
+//        }
+        
         
         let visablePlanetList = Text("No planets")
         
@@ -139,14 +152,14 @@ struct MainView: View {
                         //Overcast
                         VStack{
 
-                            Spacer().frame( height: 65)
+                            Spacer().frame( height: 90)
                             
                             HStack{
                             
                             Image("Overcast")
                                 .resizable()
-                                .frame(width: 350, height: 270, alignment: .center)
-                                .opacity(isOvercast ? 1:0)
+                                .frame(width: 325, height: 250, alignment: .center)
+                                .opacity(skyInfo == "Overcast" ? 1:0)
                                 
                             }
                         }.frame(width: 500, height: 355, alignment: .top)
@@ -161,7 +174,7 @@ struct MainView: View {
                                 Image("Partly Cloudy")
                                     .resizable()
                                     .frame(width: 120, height: 120, alignment: .center)
-                                    .opacity(isCloudy ? 1:0)
+                                    .opacity(skyInfo == "Partly Cloudy" ? 1:0)
                                     
                                     Spacer().frame( width: 150)
                                     
@@ -171,7 +184,7 @@ struct MainView: View {
                                     Image("Partly Cloudy")
                                         .resizable()
                                         .frame(width: 130, height: 130, alignment: .center)
-                                        .opacity(isCloudy ? 1:0)
+                                        .opacity(skyInfo == "Partly Cloudy" ? 1:0)
                                     
                                     Spacer().frame( width: 120)
                                     
@@ -179,7 +192,7 @@ struct MainView: View {
                                         Image("Partly Cloudy")
                                             .resizable()
                                             .frame(width: 120, height: 120, alignment: .center)
-                                            .opacity(isCloudy ? 1:0)
+                                            .opacity(skyInfo == "Partly Cloudy" ? 1:0)
                                         
                                         Spacer().frame(height: 50)
                                     }

@@ -11,15 +11,15 @@ import MapKit
 
 struct CondensedPredictionView: View {
     @ObservedObject var viewModelPrediction: moonViewModel
-    //@ObservedObject private var locationManger = getLocation()
+    @ObservedObject private var locationManger = getLocation()
     
     //let dateList = 
     
     var body: some View {
         
-        let location = "\(viewModelPrediction.location)"
+       // let location = "\(viewModelPrediction.location)"
         
-       // let location = "\(locationManger.locationCityGlobal ?? "")"
+        let location = "\(locationManger.locationCityGlobal ?? "")"
         
             ZStack{
                 Color("appBackground")

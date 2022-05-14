@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 import MapKit
 
-//Moon and cloud cover API request based on location
+//Moon and cloud cover API request based on location (WORKS!!!)
 
 public final class moonAndWeatherAPI: NSObject, CLLocationManagerDelegate {
     
@@ -54,7 +54,7 @@ public final class moonAndWeatherAPI: NSObject, CLLocationManagerDelegate {
                 }
                 
                 print("At Moon Response")
-                print(response)
+                //print(response)
                 
                 
             }.resume()
@@ -122,7 +122,7 @@ public final class planetAPI: NSObject, CLLocationManagerDelegate {
             }
                 
                 print("At Planet Response")
-                print(response)
+                //print(response)
                 
         }.resume()
     }
