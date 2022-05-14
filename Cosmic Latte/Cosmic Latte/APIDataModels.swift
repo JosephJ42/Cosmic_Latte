@@ -16,8 +16,12 @@ public struct moonAndClouds : Hashable {
     
     init(response: moonAndWeatherAPIResponse){
         
-        moonPhase = response.moonAndCloud.moon_phase
-        cloudCover = response.moonAndCloud.clouds
+        moonPhase = response.daily.first?.moon_phase ?? 0.00
+        cloudCover = response.daily.first?.clouds ?? 0
+        
+//        moonPhase = response.moonAndCloud.moon_phase
+//        cloudCover = response.moonAndCloud.clouds
+        
     }
 }
 // data model for plants and their visibility
