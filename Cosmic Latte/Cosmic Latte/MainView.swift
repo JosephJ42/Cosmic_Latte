@@ -16,8 +16,6 @@ struct MainView: View {
     @ObservedObject var viewModelTwo: planetViewModel
     @ObservedObject private var locationManger = getLocation()
     
-    
-    
     var body: some View {
         
         //Planet Visability
@@ -43,19 +41,6 @@ struct MainView: View {
         let prediction = viewModelOne.prediction
         
         let skyInfo = "\(viewModelOne.cloudCover)"
-        
-        
-        
-//        if skyInfo == "Partly Cloudy" {
-//            isCloudy = true
-//        }
-//        else if skyInfo == "Overcast"{
-//            isOvercast = true
-//        }
-//        else{
-//            print("All Clear")
-//        }
-        
         
         let visablePlanetList = Text("No planets")
         

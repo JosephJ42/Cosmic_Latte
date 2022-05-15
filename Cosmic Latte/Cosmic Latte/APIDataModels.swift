@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import SwiftUI
 
 //Data model for moon phase and cloud coverage data
 public struct moonAndClouds : Hashable {
@@ -24,18 +25,41 @@ public struct moonAndClouds : Hashable {
 // data model for plants and their visibility
 
 public struct planets: Hashable{
-    let planetName : String
-    let visible: Bool
+    
+    //let allPlanets : Int
+    //let visible: Bool
+    var planetName : [String] = []
+    
+    
     
     init(response: viewablePlanetsAPIResponse) {
         
-        planetName = response.data.first?.name ?? ""
-        visible = ((response.data.first?.aboveHorizon) != nil)
+//allPlanets = response.data.count
+        
+//        for i in 0...allPlanets{
+//            planetName = response.data.description
+//            print(planetName)
         
         
         
-//        planetName = "\(response.planetsData.name)"
-//        visible = response.planetsData.aboveHorizon
+        response.data.forEach { name in
+            
+            planetName.append(name.name)
+            
+        }
+        
+        print(planetName)
+        
+        //print(planetName)
+        
+        //    visible = ((response.data.first?.aboveHorizon) != nil)
+                
+        
+       //planetName = response.data.first?.name ?? ""
+       //visible = ((response.data.first?.aboveHorizon) != nil)
+//        allPlanets = response.data.count
+        
+        
     }
 }
 

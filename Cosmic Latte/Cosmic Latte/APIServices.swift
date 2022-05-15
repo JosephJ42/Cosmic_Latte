@@ -78,7 +78,7 @@ struct moonAndWeatherAPIMain: Decodable {
 }
 
 
-//Plant API Request based on location
+//Plant API Request based on location (works!)
 
 public final class planetAPI: NSObject, CLLocationManagerDelegate {
     
@@ -135,11 +135,11 @@ struct viewablePlanetsAPIResponse: Decodable, Hashable{
 
 struct planetsAPIMain: Decodable, Hashable{
     let name: String
-    let aboveHorizon : Bool
+    //let aboveHorizon : Bool
     
     enum CodingKeys: CodingKey{
         case name
-        case aboveHorizon
+        //case aboveHorizon
     }
 }
 
@@ -188,7 +188,7 @@ public final class spaceNewsAPI: NSObject, CLLocationManagerDelegate {
             }
             
             print("At Spacew news Response")
-            print(response)
+            //print(response)
         }.resume()
     }
     

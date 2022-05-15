@@ -9,7 +9,11 @@ import Foundation
 import CoreLocation
 import MapKit
 
+
+
+//==================
 // Moon and Weather
+//==================
 
 public class moonViewModel : ObservableObject {
     
@@ -47,7 +51,7 @@ public func getLocationString() -> String {
     
     let city : String = locationManger.locationCityGlobal ?? ""
  
-    print("the City is: \(locationManger.locationCityGlobal ?? "")")
+    //print("the City is: \(locationManger.locationCityGlobal ?? "")")
     
     return city
 }
@@ -103,9 +107,9 @@ extension getLocation: CLLocationManagerDelegate{
                        }
                        // City
                        if let city = placeMark.subAdministrativeArea {
-                           print(city)
+                           //print(city)
                            self.locationCityGlobal = placeMark.subAdministrativeArea!
-                           print(self.locationCityGlobal!)
+                           //print(self.locationCityGlobal!)
                           
                        }
                        // Country
@@ -121,16 +125,9 @@ extension getLocation: CLLocationManagerDelegate{
 
 //Adepted code ends
 
-
-
-
-
-
-
-
-
-
-//
+//=================================
+// Cosmic Lattes Prediction Engine
+//=================================
 public func stargazingPrediction( moonPhase: Double, cloudCover: Int) -> String {
     
     var prediction: String = ""
@@ -207,9 +204,14 @@ public func stargazingPrediction( moonPhase: Double, cloudCover: Int) -> String 
         print("Prediction engine has broken or gone out of bounds")
     }
     
+    
     return prediction
 }
 
+//======================
+// Moon Phase Caculator
+//======================
+//
 //
 public func moonPhaseCalculator( moonPhase: Double) -> String {
     var moonPhaseString: String = ""
@@ -249,6 +251,10 @@ public func moonPhaseCalculator( moonPhase: Double) -> String {
     return moonPhaseString
 }
 
+//==========================
+// Cloud Coverage Caculator
+//==========================
+//
 //
 public func cloudCoverageCalculator(cloudCover: Int) -> String {
     
@@ -273,12 +279,14 @@ public func cloudCoverageCalculator(cloudCover: Int) -> String {
     return cloudCoverageString
 }
 
-//Planet data
-
+//=============
+// Planet data
+//=============
 public class planetViewModel:ObservableObject{
     
-    @Published var name : String = ""
-    @Published var planetVisable : Bool = false
+    //@Published var name : String = ""
+   // @Published var planetVisable : Bool = false
+    @Published var planetList : [String] = []
     
     public let planets: planetAPI
     
@@ -288,8 +296,13 @@ public class planetViewModel:ObservableObject{
     
     public func planetVisibilityRefresh(){
         planets.getUsersLocation { planetInfo in DispatchQueue.main.async{
-        self.name = planetInfo.planetName
-        self.planetVisable = planetInfo.visible
+            
+            self.planetList = planetInfo.planetName
+            
+            //print(self.name)
+        //self.planetVisable = planetInfo.visible
+          //  print(self.planetVisable)
+            
         }
         }
     }
@@ -302,7 +315,7 @@ public class spaceNewsViewModel: ObservableObject{
     @Published var title: String = "No Title"
     @Published var newsSource : String = "No Source"
     @Published var newsDescription : String = "No description"
-    @Published var newsImageUrl : String = ""
+    @Published var newsImageUrl : String = "https://i.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI"
     @Published var newsArticleLinkUrl: String = ""
     
     public let spaceNews: spaceNewsAPI
