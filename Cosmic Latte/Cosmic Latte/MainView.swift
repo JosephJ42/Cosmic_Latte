@@ -18,16 +18,6 @@ struct MainView: View {
     
     var body: some View {
         
-        //Planet Visability
-        let isMercuryVisable = false
-        let isVenusVisable = false
-        let isMarsVisable = false
-        let isJupiterVisable = false
-        let isSaturnVisable = false
-        let isUranusVisable = false
-        let isNeptuneVisable = false
-        let isPlutoVisable = false
-        
         
         let moonStatus = viewModelOne.moonPhase
         
@@ -42,7 +32,7 @@ struct MainView: View {
         
         let skyInfo = "\(viewModelOne.cloudCover)"
         
-        let visablePlanetList = Text("No planets")
+        let visablePlanetList = "\(viewModelTwo.planetList)"
         
         
         ZStack{
@@ -72,18 +62,18 @@ struct MainView: View {
                                 Image("Neptune")
                                     .resizable()
                                     .frame(width: 75, height: 75, alignment: .center)
-                                    .opacity(isNeptuneVisable ? 1:0)
+                                    .opacity(viewModelTwo.isNeptuneVisable == true ? 1:0)
                             }.frame(width: 75, height: 75, alignment: .center)
                             Image("Mercury")
                                 .resizable()
                                 .frame(width: 75, height: 75, alignment: .center)
-                                .opacity(isMercuryVisable ? 1:0)
+                                .opacity(viewModelTwo.isMercuryVisable == true ? 1:0)
                             VStack{
                                 Spacer().frame( height: 20)
                                 Image("Mars")
                                     .resizable()
                                     .frame(width: 75, height: 75, alignment: .center)
-                                    .opacity(isMarsVisable ? 1:0)
+                                    .opacity(viewModelTwo.isMarsVisable == true ? 1:0)
                             }.frame(width: 75, height: 75, alignment: .center)
                         }
                         
@@ -93,7 +83,7 @@ struct MainView: View {
                             Image("Venus")
                                 .resizable()
                                 .frame(width: 75, height: 75, alignment: .center)
-                                .opacity(isVenusVisable ? 1:0)
+                                .opacity(viewModelTwo.isVenusVisable == true ? 1:0)
                             Spacer().frame(width: 30)
                             Image(moonStatus)
                                 .resizable()
@@ -102,7 +92,7 @@ struct MainView: View {
                             Image("Saturn")
                                 .resizable()
                                 .frame(width: 75, height: 75, alignment: .center)
-                                .opacity(isSaturnVisable ? 1:0)
+                                .opacity(viewModelTwo.isSaturnVisable == true ? 1:0)
                             Spacer()
                         }
                         
@@ -112,20 +102,20 @@ struct MainView: View {
                                 Image("Jupiter")
                                     .resizable()
                                     .frame(width: 75, height: 75, alignment: .center)
-                                    .opacity(isJupiterVisable ? 1:0)
+                                    .opacity(viewModelTwo.isJupiterVisable == true ? 1:0)
                                 Spacer().frame( height: 20)
                             }.frame(width: 75, height: 75, alignment: .center)
                             
                             Image("Pluto")
                                 .resizable()
                                 .frame(width: 75, height: 75, alignment: .center)
-                                .opacity(isPlutoVisable ? 1:0)
+                                .opacity(viewModelTwo.isPlutoVisable == true ? 1:0)
                             
                             VStack{
                                 Image("Uranus") //ha
                                     .resizable()
                                     .frame(width: 75, height: 75, alignment: .center)
-                                    .opacity(isUranusVisable ? 1:0)
+                                    .opacity(viewModelTwo.isUranusVisable == true ? 1:0)
                                 Spacer().frame( height: 20)
                                 
                             }.frame(width: 75, height: 75, alignment: .center)

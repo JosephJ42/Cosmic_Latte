@@ -284,9 +284,17 @@ public func cloudCoverageCalculator(cloudCover: Int) -> String {
 //=============
 public class planetViewModel:ObservableObject{
     
-    //@Published var name : String = ""
-   // @Published var planetVisable : Bool = false
-    @Published var planetList : [String] = []
+
+    @Published var planetList : String = "No planets"
+    
+    @Published var isMercuryVisable : Bool = false
+    @Published var isVenusVisable : Bool = false
+    @Published var isMarsVisable : Bool = false
+    @Published var isJupiterVisable : Bool = false
+    @Published var isSaturnVisable : Bool = false
+    @Published var isUranusVisable : Bool = false
+    @Published var isNeptuneVisable : Bool = false
+    @Published var isPlutoVisable : Bool = false
     
     public let planets: planetAPI
     
@@ -297,15 +305,52 @@ public class planetViewModel:ObservableObject{
     public func planetVisibilityRefresh(){
         planets.getUsersLocation { planetInfo in DispatchQueue.main.async{
             
-            self.planetList = planetInfo.planetName
+            self.planetList = getPlanetString(planetList: planetInfo.planetName)
             
-            //print(self.name)
-        //self.planetVisable = planetInfo.visible
-          //  print(self.planetVisable)
-            
+            self.isMercuryVisable = checkPlanet(planetBeingChecked: "Mercury", planetList: planetInfo.planetName)
+            self.isVenusVisable = checkPlanet(planetBeingChecked: "Venus", planetList: planetInfo.planetName)
+            self.isMarsVisable = checkPlanet(planetBeingChecked: "Mars", planetList: planetInfo.planetName)
+            self.isJupiterVisable = checkPlanet(planetBeingChecked: "Jupiter", planetList: planetInfo.planetName)
+            self.isSaturnVisable = checkPlanet(planetBeingChecked: "Saturn", planetList: planetInfo.planetName)
+            self.isUranusVisable = checkPlanet(planetBeingChecked: "Uranus", planetList: planetInfo.planetName)
+            self.isNeptuneVisable = checkPlanet(planetBeingChecked: "Neptune", planetList: planetInfo.planetName)
+            self.isPlutoVisable = checkPlanet(planetBeingChecked: "Pluto", planetList: planetInfo.planetName)
         }
         }
     }
+}
+
+
+public func getPlanetString(planetList: [String]) -> String {
+    
+    var planetString = "No plants"
+    
+    if planetList.count == 7{
+        planetString = "All planets"
+    }
+    else if planetList.count < 7 && planetList.isEmpty == false {
+        
+        planetString = planetList.joined(separator: ", ")
+        
+    }
+    else{
+        planetString = "No plants"
+    }
+    
+    return planetString
+}
+
+
+
+public func checkPlanet(planetBeingChecked: String , planetList: [String]) -> Bool{
+    
+    var isPresent: Bool = false
+    
+    if planetList.contains(planetBeingChecked){
+        isPresent = true
+    }
+    
+    return isPresent
 }
 
 // Space news

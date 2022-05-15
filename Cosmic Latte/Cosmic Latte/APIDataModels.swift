@@ -26,20 +26,10 @@ public struct moonAndClouds : Hashable {
 
 public struct planets: Hashable{
     
-    //let allPlanets : Int
-    //let visible: Bool
     var planetName : [String] = []
-    
-    
+
     
     init(response: viewablePlanetsAPIResponse) {
-        
-//allPlanets = response.data.count
-        
-//        for i in 0...allPlanets{
-//            planetName = response.data.description
-//            print(planetName)
-        
         
         
         response.data.forEach { name in
@@ -49,17 +39,7 @@ public struct planets: Hashable{
         }
         
         print(planetName)
-        
-        //print(planetName)
-        
-        //    visible = ((response.data.first?.aboveHorizon) != nil)
-                
-        
-       //planetName = response.data.first?.name ?? ""
-       //visible = ((response.data.first?.aboveHorizon) != nil)
-//        allPlanets = response.data.count
-        
-        
+           
     }
 }
 
