@@ -324,13 +324,24 @@ public class planetViewModel:ObservableObject{
 public func getPlanetString(planetList: [String]) -> String {
     
     var planetString = "No plants"
+    var planetListFiltered : [String]
     
-    if planetList.count == 7{
+    //removes the moon from the planet list
+    if planetList.contains("Moon"){
+        
+        planetListFiltered = planetList.filter{$0 != "Moon"}
+        
+    }else{
+        
+        planetListFiltered = planetList
+    }
+    
+    if planetListFiltered.count == 8{
         planetString = "All planets"
     }
-    else if planetList.count < 7 && planetList.isEmpty == false {
+    else if planetListFiltered.count < 8 && planetListFiltered.isEmpty == false {
         
-        planetString = planetList.joined(separator: ", ")
+        planetString = planetListFiltered.joined(separator: ", ")
         
     }
     else{
@@ -371,6 +382,7 @@ public class spaceNewsViewModel: ObservableObject{
   
     public func newsRefresh(){
         spaceNews.getNewsData{ spaceNewsInfo in DispatchQueue.main.async {
+            
             self.title = spaceNewsInfo.title
             self.newsSource = spaceNewsInfo.newsSite
             self.newsDescription = spaceNewsInfo.summary

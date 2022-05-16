@@ -83,7 +83,7 @@ struct CondensedPredictionView: View {
                         List(){
                             Text("Location: \(location)")
                             
-                            ForEach(0..<7){ number in
+                            ForEach(0..<7){ number in 
                             
                                 PredictionViewRow(viewModelPrediction: viewModelPrediction )
                             }

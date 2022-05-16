@@ -51,7 +51,11 @@ public struct spaceNews{
     let newsSite: String
     let summary : String
     
-    init(response: spaceNewsAPIResponse){
+    init(response: SpaceNewsAPIMain){
+        
+       // print("here")
+        
+       // print(response.self)
         
         title = response.title ?? ""
         url = response.url ?? ""
@@ -59,10 +63,13 @@ public struct spaceNews{
         newsSite = response.newsSite ?? ""
         summary = response.summary ?? ""
         
-
+//        print(response.newsData.description)
         
-        
-        
+//        title = response.newsData.first?.title ?? ""
+//        url = response.newsData.first?.url ?? ""
+//        imageUrl = response.newsData.first?.imageUrl ?? ""
+//        newsSite = response.newsData.first?.newsSite ?? ""
+//        summary = response.newsData.first?.summary ?? ""
         
 //        title = response.Article.first?.title ?? ""
 //        url = response.Article.first?.url ?? ""

@@ -146,20 +146,20 @@ struct planetsAPIMain: Decodable, Hashable{
 
 // Space news API
 
-public final class spaceNewsAPI: NSObject, CLLocationManagerDelegate {
+public final class spaceNewsAPI: NSObject { // is making call just not storing properly //, CLLocationManagerDelegate
     
     public override init(){
         super.init()
-        getLocation.delegate = self
+     //   getLocation.delegate = self
     }
     
-    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        spaceNewsDataRequest()
-    }
-    
-    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Issue with data: \(error.localizedDescription)")
-    }
+//    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        spaceNewsDataRequest()
+//    }
+//
+//    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+//        print("Issue with data: \(error.localizedDescription)")
+//    }
     
         
     private let getLocation = CLLocationManager()
@@ -168,8 +168,7 @@ public final class spaceNewsAPI: NSObject, CLLocationManagerDelegate {
     
     public func getNewsData(_ completionHandler: @escaping((spaceNews)-> Void)){
             self.completionHandler = completionHandler
-            getLocation.requestWhenInUseAuthorization()
-            getLocation.startUpdatingLocation()
+            spaceNewsDataRequest()
     }
     
     
@@ -180,22 +179,24 @@ public final class spaceNewsAPI: NSObject, CLLocationManagerDelegate {
         print("Space New API request Running")
         
         guard let url = URL(string: spaceNewsAPIString) else {return}
-            
+         
+        //print("1")
         URLSession.shared.dataTask(with: url){ data, response, error in guard error == nil, let data = data else {return}
-            
-            if let response = try? JSONDecoder().decode(spaceNewsAPIResponse.self, from: data){
-                self.completionHandler?(spaceNews(response: response))
+           
+            if let response = try? JSONDecoder().decode([SpaceNewsAPIMain].self, from: data){
+
+                //print("Space News API response is:")
+                //print(response)
+                
+                self.completionHandler?(spaceNews(response: response[0]))
+                
             }
-            
-            print("At Spacew news Response")
-            //print(response)
         }.resume()
     }
     
-    
 }
 
-struct spaceNewsAPIResponse: Decodable{
+struct SpaceNewsAPIMain: Decodable{
     
     let title: String?
     let url: String?
@@ -207,20 +208,42 @@ struct spaceNewsAPIResponse: Decodable{
         case title, url, imageUrl, newsSite, summary
     }
     
-    //typealias is used to handle issue with this data consisting of an unnamed array of dictionaries
-    //let Article : [spaceNewsAPIMain]
 }
+        
+// Old Space news API code
+// Remove when done
 
-struct spaceNewsAPIMain: Decodable, Hashable {
-    let title: String?
-    let url: String?
-    let imageUrl: String?
-    let newsSite: String?
-    let summary : String?
-    
-    enum CodingKeys: CodingKey{
-        case title, url, imageUrl, newsSite, summary
-    }
-    
-    
-}
+//struct spaceNewsAPIResponse: Decodable{
+//
+//    let title: String?
+//    let url: String?
+//    let imageUrl: String?
+//    let newsSite: String?
+//    let summary : String?
+//
+//    enum CodingKeys: CodingKey{
+//        case title, url, imageUrl, newsSite, summary
+//    }
+//
+//    //typealias is used to handle issue with this data consisting of an unnamed array of dictionaries
+//    //let Article : [spaceNewsAPIMain]
+//}
+//
+//struct spaceNewsAPIMain: Decodable, Hashable {
+//    let title: String?
+//    let url: String?
+//    let imageUrl: String?
+//    let newsSite: String?
+//    let summary : String?
+//
+//    enum CodingKeys: CodingKey{
+//        case title, url, imageUrl, newsSite, summary
+//    }
+//
+//
+//}
+//struct SpaceNewsAPIResponse: Decodable{
+//
+//    let newsData: [SpaceNewsAPIMain]
+//
+//}
