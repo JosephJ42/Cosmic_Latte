@@ -45,38 +45,36 @@ public struct planets: Hashable{
 
 public struct spaceNews{
     
-    let title: String
-    let url: String
-    let imageUrl: String
-    let newsSite: String
-    let summary : String
     
-    init(response: SpaceNewsAPIMain){
+    
+    var title: [String] = []
+    var  url: [String] = []
+    var  imageUrl: [String] = []
+    var  newsSite: [String] = []
+    var  summary : [String] = []
+    
+    init(response: [SpaceNewsAPIMain]){
         
-       // print("here")
         
-       // print(response.self)
-        
-        title = response.title ?? ""
-        url = response.url ?? ""
-        imageUrl = response.imageUrl ?? ""
-        newsSite = response.newsSite ?? ""
-        summary = response.summary ?? ""
-        
-//        print(response.newsData.description)
-        
-//        title = response.newsData.first?.title ?? ""
-//        url = response.newsData.first?.url ?? ""
-//        imageUrl = response.newsData.first?.imageUrl ?? ""
-//        newsSite = response.newsData.first?.newsSite ?? ""
-//        summary = response.newsData.first?.summary ?? ""
-        
-//        title = response.Article.first?.title ?? ""
-//        url = response.Article.first?.url ?? ""
-//        imageUrl = response.Article.first?.imageUrl ?? ""
-//        newsSite = response.Article.first?.newsSite ?? ""
-//        summary = response.Article.first?.summary ?? ""
+        response.forEach{ article in
             
+            title.append(article.title ?? "")
+            
+            url.append(article.url ?? "")
+            
+            imageUrl.append(article.imageUrl ?? "")
+            
+            newsSite.append(article.newsSite ?? "")
+            
+            summary.append(article.summary ?? "")
+        }
+        
+//        print(title)
+//        print(url)
+//        print(imageUrl)
+//        print(newsSite)
+//        print(summary)
+        
     }
 }
 
@@ -88,3 +86,24 @@ public struct spaceNews{
 //        imageUrl = response.SpaceNewsMain.imageUrl
 //        newsSite = response.SpaceNewsMain.newsSite
 //        summary = response.SpaceNewsMain.summary
+
+
+//        title = response.title ?? ""
+//        url = response.url ?? ""
+//        imageUrl = response.imageUrl ?? ""
+//        newsSite = response.newsSite ?? ""
+//        summary = response.summary ?? ""
+
+//        print(response.newsData.description)
+
+//        title = response.newsData.first?.title ?? ""
+//        url = response.newsData.first?.url ?? ""
+//        imageUrl = response.newsData.first?.imageUrl ?? ""
+//        newsSite = response.newsData.first?.newsSite ?? ""
+//        summary = response.newsData.first?.summary ?? ""
+
+//        title = response.Article.first?.title ?? ""
+//        url = response.Article.first?.url ?? ""
+//        imageUrl = response.Article.first?.imageUrl ?? ""
+//        newsSite = response.Article.first?.newsSite ?? ""
+//        summary = response.Article.first?.summary ?? ""

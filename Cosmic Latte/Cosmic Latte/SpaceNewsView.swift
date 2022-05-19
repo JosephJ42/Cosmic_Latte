@@ -75,31 +75,33 @@ struct SpaceNewsView: View {
                         Spacer().frame(height: 98)
     
                             VStack(){
-                                List(){
-                                    
-                                    ForEach(0..<7){ number in
-                                        
+                                
+                                Text("News Feed")
+                                
+                                List (viewModelSpaceNews.articles) { articles in
+                                
                                         HStack{
-                                            AsyncImage(url: URL(string: viewModelSpaceNews.newsImageUrl)) //viewModel.newsImageUrl
+                                            AsyncImage(url: URL(string: articles.imageUrl ?? "")) //viewModel.newsImageUrl
+                                                .scaledToFit()
                                                 .frame(width: 125, height: 100)
                                                 .cornerRadius(15)
-                                                
-                                            
+
+
                                             Spacer().frame(width: 10)
                                             VStack(alignment: .leading){
-                                                Text(viewModelSpaceNews.title) //viewModel.title
+                                                Text(articles.title ?? "") //viewModel.title
                                                     .font(.system(size: 12, design: .default))
-                                                Text(viewModelSpaceNews.newsSource) //viewModel.newsSource
+                                                Text(articles.newsSite ?? "") //viewModel.newsSource
                                                     .font(.system(size: 10, design: .default))
-                                                Text(viewModelSpaceNews.newsDescription) //viewModel.newsDescription
+                                                Text(articles.summary ?? "") //viewModel.newsDescription
                                                     .font(.system(size: 10, design: .default))
-                                                    
-                                            }
 
-                                        }.onAppear(perform: viewModelSpaceNews.newsRefresh)
-                                         .listRowInsets(.init(top: 5, leading: 10, bottom: 5, trailing: 10))
-                                    }
-                                }
+                                            }
+                                        }
+
+                                }.onAppear(perform: viewModelSpaceNews.newsRefresh)
+                                 .listRowInsets(.init(top: 5, leading: 10, bottom: 5, trailing: 10))
+                                
                             }.frame(width: 360, height: 660)
                                      .background(Color("App textboxes and overlay"))
                                      .cornerRadius(15)
@@ -116,30 +118,30 @@ struct SpaceNewsView: View {
 //    }
 //}
 
-struct NewsRow: View {
-    
-    @ObservedObject var viewModelSpaceNews: spaceNewsViewModel
-    
-    
-    
-    var body: some View {
-        HStack{
-            AsyncImage(url: URL(string: viewModelSpaceNews.newsImageUrl)) //viewModel.newsImageUrl
-                .frame(width: 125, height: 100)
-                .cornerRadius(15)
-                
-            
-            Spacer().frame(width: 10)
-            VStack(alignment: .leading){
-                Text(viewModelSpaceNews.title) //viewModel.title
-                    .font(.system(size: 12, design: .default))
-                Text(viewModelSpaceNews.newsSource) //viewModel.newsSource
-                    .font(.system(size: 10, design: .default))
-                Text(viewModelSpaceNews.newsDescription) //viewModel.newsDescription
-                    .font(.system(size: 10, design: .default))
-                    
-            }
-
-        }.onAppear(perform: viewModelSpaceNews.newsRefresh)
-    }
-}
+//struct NewsRow: View {
+//
+//    @ObservedObject var viewModelSpaceNews: spaceNewsViewModel
+//
+//
+//
+//    var body: some View {
+//        HStack{
+//            AsyncImage(url: URL(string: viewModelSpaceNews.newsImageUrl)) //viewModel.newsImageUrl
+//                .frame(width: 125, height: 100)
+//                .cornerRadius(15)
+//
+//
+//            Spacer().frame(width: 10)
+//            VStack(alignment: .leading){
+//                Text(viewModelSpaceNews.title) //viewModel.title
+//                    .font(.system(size: 12, design: .default))
+//                Text(viewModelSpaceNews.newsSource) //viewModel.newsSource
+//                    .font(.system(size: 10, design: .default))
+//                Text(viewModelSpaceNews.newsDescription) //viewModel.newsDescription
+//                    .font(.system(size: 10, design: .default))
+//
+//            }
+//
+//        }.onAppear(perform: viewModelSpaceNews.newsRefresh)
+//    }
+//}

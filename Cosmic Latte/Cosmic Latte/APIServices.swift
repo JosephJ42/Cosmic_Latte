@@ -188,7 +188,7 @@ public final class spaceNewsAPI: NSObject { // is making call just not storing p
                 //print("Space News API response is:")
                 //print(response)
                 
-                self.completionHandler?(spaceNews(response: response[0]))
+                self.completionHandler?(spaceNews(response: response))
                 
             }
         }.resume()

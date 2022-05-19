@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 import MapKit
+import SwiftUI
 
 
 
@@ -368,11 +369,14 @@ public func checkPlanet(planetBeingChecked: String , planetList: [String]) -> Bo
 
 public class spaceNewsViewModel: ObservableObject{
     
-    @Published var title: String = "No Title"
-    @Published var newsSource : String = "No Source"
-    @Published var newsDescription : String = "No description"
-    @Published var newsImageUrl : String = "https://i.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI"
-    @Published var newsArticleLinkUrl: String = ""
+    @Published var articles: [articles] = []
+    
+    @Published var title: [String] = []
+    @Published var newsSource : [String] = []
+    @Published var newsDescription : [String] = []
+    @Published var newsImageUrl : [String] = []
+    @Published var newsArticleLinkUrl: [String] = []
+    
     
     public let spaceNews: spaceNewsAPI
     
@@ -383,16 +387,43 @@ public class spaceNewsViewModel: ObservableObject{
     public func newsRefresh(){
         spaceNews.getNewsData{ spaceNewsInfo in DispatchQueue.main.async {
             
-            self.title = spaceNewsInfo.title
-            self.newsSource = spaceNewsInfo.newsSite
-            self.newsDescription = spaceNewsInfo.summary
-            self.newsImageUrl = spaceNewsInfo.imageUrl
-            self.newsArticleLinkUrl = spaceNewsInfo.url
-        
+            self.articles = getArticles(title: spaceNewsInfo.title, source: spaceNewsInfo.newsSite, desription: spaceNewsInfo.summary, imageUrl: spaceNewsInfo.imageUrl, url: spaceNewsInfo.url )
+            
             }
+//            print(self.title)
+//            print(self.newsSource)
+//            print(self.newsDescription)
+//            print(self.newsImageUrl)
+//            print(self.newsArticleLinkUrl)
         }
     }
 }
     
+public func getArticles(title : [String], source : [String] , desription : [String], imageUrl : [String], url : [String]) -> [articles]{
+    
+    var article: articles
+    
+    var articleArray: [articles] = []
+    
+    for i in 0..<7{
+        
+        
+        article = articles(title: title[i], url: url[i], imageUrl: imageUrl[i], newsSite: source[i], summary: desription[i])
 
+        articleArray.append(article)
+    }
+    
+    print(articleArray)
+    
+    return articleArray
+}
 
+public struct articles: Identifiable{
+   
+    public let id = UUID()
+    let title: String?
+    let url: String?
+    let imageUrl: String?
+    let newsSite: String?
+    let summary : String?
+}
