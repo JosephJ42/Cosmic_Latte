@@ -76,31 +76,39 @@ struct SpaceNewsView: View {
     
                             VStack(){
                                 
-                                Text("News Feed")
+                                //Text("News Feed")
                                 
                                 List (viewModelSpaceNews.articles) { articles in
-                                
+                                    Link(destination: URL(string: articles.url ?? "")!){
                                         HStack{
-                                            AsyncImage(url: URL(string: articles.imageUrl ?? "")) //viewModel.newsImageUrl
-                                                .scaledToFit()
-                                                .frame(width: 125, height: 100)
-                                                .cornerRadius(15)
+                                            AsyncImage(url: URL(string: articles.imageUrl ?? "")){ phase in
+                                                if let image = phase.image{
+                                                    image.resizable()
+                                                    .frame(width: 150, height: 125)
+                                                }else{
+                                                    Image(systemName: "exclamationmark.circle")
+                                                }
+                                            }.scaledToFit()
+                                             .frame(width: 150, height: 125)
+                                             .cornerRadius(15)
 
 
                                             Spacer().frame(width: 10)
                                             VStack(alignment: .leading){
                                                 Text(articles.title ?? "") //viewModel.title
                                                     .font(.system(size: 12, design: .default))
-                                                Text(articles.newsSite ?? "") //viewModel.newsSource
+                                                Text("Source: \(articles.newsSite ?? "")") //viewModel.newsSource
                                                     .font(.system(size: 10, design: .default))
+                                                Text("")
                                                 Text(articles.summary ?? "") //viewModel.newsDescription
                                                     .font(.system(size: 10, design: .default))
+                                                    .fixedSize(horizontal: false, vertical: true)
 
                                             }
                                         }
-
+                                    }.foregroundColor(.primary)
                                 }.onAppear(perform: viewModelSpaceNews.newsRefresh)
-                                 .listRowInsets(.init(top: 5, leading: 10, bottom: 5, trailing: 10))
+                                 .listRowInsets(.init(top: 5, leading: 0, bottom: 5, trailing: 0))
                                 
                             }.frame(width: 360, height: 660)
                                      .background(Color("App textboxes and overlay"))

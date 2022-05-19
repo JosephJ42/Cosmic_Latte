@@ -81,6 +81,7 @@ struct CondensedPredictionView: View {
                     VStack{
                         Spacer().frame(height: 98)
                         List(){
+                            
                             Text("Location: \(location)")
                             
                             ForEach(0..<7){ number in 
