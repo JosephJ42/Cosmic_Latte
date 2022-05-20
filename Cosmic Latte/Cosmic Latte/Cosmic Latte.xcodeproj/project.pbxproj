@@ -1,0 +1,376 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5D907D10281035F800C5EFE9 /* CosmicLatteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D907D0F281035F800C5EFE9 /* CosmicLatteViewModel.swift */; };
+		5DBDDFBF280D58BC00DCC84A /* APIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBDDFBE280D58BB00DCC84A /* APIServices.swift */; };
+		5DBDDFC1280D5EC900DCC84A /* APIDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBDDFC0280D5EC900DCC84A /* APIDataModels.swift */; };
+		87FE228627FB35BF00A8F5C5 /* Cosmic_LatteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FE228527FB35BF00A8F5C5 /* Cosmic_LatteApp.swift */; };
+		87FE228827FB35BF00A8F5C5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FE228727FB35BF00A8F5C5 /* ContentView.swift */; };
+		87FE228A27FB35C200A8F5C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87FE228927FB35C200A8F5C5 /* Assets.xcassets */; };
+		87FE228D27FB35C200A8F5C5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87FE228C27FB35C200A8F5C5 /* Preview Assets.xcassets */; };
+		D403FD4C2817129D0037CCD8 /* SpaceNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D403FD4B2817129D0037CCD8 /* SpaceNewsView.swift */; };
+		D403FD4E281712CB0037CCD8 /* CondensedPredictionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D403FD4D281712CB0037CCD8 /* CondensedPredictionView.swift */; };
+		D403FD50281725F60037CCD8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D403FD4F281725F60037CCD8 /* MainView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5D907D0F281035F800C5EFE9 /* CosmicLatteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmicLatteViewModel.swift; sourceTree = "<group>"; };
+		5DBDDFBE280D58BB00DCC84A /* APIServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServices.swift; sourceTree = "<group>"; };
+		5DBDDFC0280D5EC900DCC84A /* APIDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDataModels.swift; sourceTree = "<group>"; };
+		87FE228227FB35BF00A8F5C5 /* Cosmic Latte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cosmic Latte.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		87FE228527FB35BF00A8F5C5 /* Cosmic_LatteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cosmic_LatteApp.swift; sourceTree = "<group>"; };
+		87FE228727FB35BF00A8F5C5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		87FE228927FB35C200A8F5C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		87FE228C27FB35C200A8F5C5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D403FD4B2817129D0037CCD8 /* SpaceNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceNewsView.swift; sourceTree = "<group>"; };
+		D403FD4D281712CB0037CCD8 /* CondensedPredictionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CondensedPredictionView.swift; sourceTree = "<group>"; };
+		D403FD4F281725F60037CCD8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		87FE227F27FB35BF00A8F5C5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		87FE227927FB35BF00A8F5C5 = {
+			isa = PBXGroup;
+			children = (
+				87FE228427FB35BF00A8F5C5 /* Cosmic Latte */,
+				87FE228327FB35BF00A8F5C5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		87FE228327FB35BF00A8F5C5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				87FE228227FB35BF00A8F5C5 /* Cosmic Latte.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		87FE228427FB35BF00A8F5C5 /* Cosmic Latte */ = {
+			isa = PBXGroup;
+			children = (
+				87FE228527FB35BF00A8F5C5 /* Cosmic_LatteApp.swift */,
+				5D907D0F281035F800C5EFE9 /* CosmicLatteViewModel.swift */,
+				87FE228727FB35BF00A8F5C5 /* ContentView.swift */,
+				5DBDDFBE280D58BB00DCC84A /* APIServices.swift */,
+				5DBDDFC0280D5EC900DCC84A /* APIDataModels.swift */,
+				87FE228927FB35C200A8F5C5 /* Assets.xcassets */,
+				87FE228B27FB35C200A8F5C5 /* Preview Content */,
+				D403FD4B2817129D0037CCD8 /* SpaceNewsView.swift */,
+				D403FD4D281712CB0037CCD8 /* CondensedPredictionView.swift */,
+				D403FD4F281725F60037CCD8 /* MainView.swift */,
+			);
+			path = "Cosmic Latte";
+			sourceTree = "<group>";
+		};
+		87FE228B27FB35C200A8F5C5 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				87FE228C27FB35C200A8F5C5 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		87FE228127FB35BF00A8F5C5 /* Cosmic Latte */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87FE229027FB35C200A8F5C5 /* Build configuration list for PBXNativeTarget "Cosmic Latte" */;
+			buildPhases = (
+				87FE227E27FB35BF00A8F5C5 /* Sources */,
+				87FE227F27FB35BF00A8F5C5 /* Frameworks */,
+				87FE228027FB35BF00A8F5C5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Cosmic Latte";
+			productName = "Cosmic Latte";
+			productReference = 87FE228227FB35BF00A8F5C5 /* Cosmic Latte.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		87FE227A27FB35BF00A8F5C5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					87FE228127FB35BF00A8F5C5 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 87FE227D27FB35BF00A8F5C5 /* Build configuration list for PBXProject "Cosmic Latte" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 87FE227927FB35BF00A8F5C5;
+			productRefGroup = 87FE228327FB35BF00A8F5C5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				87FE228127FB35BF00A8F5C5 /* Cosmic Latte */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		87FE228027FB35BF00A8F5C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87FE228D27FB35C200A8F5C5 /* Preview Assets.xcassets in Resources */,
+				87FE228A27FB35C200A8F5C5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		87FE227E27FB35BF00A8F5C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87FE228827FB35BF00A8F5C5 /* ContentView.swift in Sources */,
+				D403FD50281725F60037CCD8 /* MainView.swift in Sources */,
+				5DBDDFBF280D58BC00DCC84A /* APIServices.swift in Sources */,
+				D403FD4C2817129D0037CCD8 /* SpaceNewsView.swift in Sources */,
+				5D907D10281035F800C5EFE9 /* CosmicLatteViewModel.swift in Sources */,
+				5DBDDFC1280D5EC900DCC84A /* APIDataModels.swift in Sources */,
+				87FE228627FB35BF00A8F5C5 /* Cosmic_LatteApp.swift in Sources */,
+				D403FD4E281712CB0037CCD8 /* CondensedPredictionView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		87FE228E27FB35C200A8F5C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		87FE228F27FB35C200A8F5C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		87FE229127FB35C200A8F5C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Cosmic Latte/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Cosmic-Latte-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "joseph.jarvis.Cosmic-Latte";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		87FE229227FB35C200A8F5C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Cosmic Latte/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Cosmic-Latte-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "joseph.jarvis.Cosmic-Latte";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		87FE227D27FB35BF00A8F5C5 /* Build configuration list for PBXProject "Cosmic Latte" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87FE228E27FB35C200A8F5C5 /* Debug */,
+				87FE228F27FB35C200A8F5C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		87FE229027FB35C200A8F5C5 /* Build configuration list for PBXNativeTarget "Cosmic Latte" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87FE229127FB35C200A8F5C5 /* Debug */,
+				87FE229227FB35C200A8F5C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 87FE227A27FB35BF00A8F5C5 /* Project object */;
+}
