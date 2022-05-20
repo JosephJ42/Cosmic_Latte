@@ -12,12 +12,8 @@ import MapKit
 struct CondensedPredictionView: View {
     @ObservedObject var viewModelPrediction: moonViewModel
     @ObservedObject private var locationManger = getLocation()
-    
-    //let dateList = 
-    
-    var body: some View {
         
-       // let location = "\(viewModelPrediction.location)"
+    var body: some View {
         
         let location = "\(locationManger.locationCityGlobal ?? "")"
         
@@ -78,24 +74,45 @@ struct CondensedPredictionView: View {
                 //Condensed View Feed
                 ZStack{
                     
-                    VStack{
+                    ScrollView(){
                         Spacer().frame(height: 98)
-                        List(){
-                            
-                            Text("Location: \(location)")
-                            
-                            ForEach(0..<7){ number in 
-                            
-                                PredictionViewRow(viewModelPrediction: viewModelPrediction )
-                            }
-                            
-                        }.frame(width: 360, height: 680)
-                             .background(Color("App textboxes and overlay"))
-                             .cornerRadius(15)
-                    }
-                    
+    
+                            VStack(){
+                                
+                                //Text("News Feed")
+                                //Spacer().frame(height: 98)
+                                Text("Location: \(location)")
+                                    .padding()
+                                    .frame(alignment: .center)
+                                
+                                List(viewModelPrediction.condensedPredictionsList) { predictions in
+                                        
+                                        HStack(){
+                                            //image
+                                            Image(predictions.moonPhase ?? "New Moon").resizable().frame(width: 70, height: 70)
+
+                                            Spacer().frame(width: 24)
+                                                //Text V stack
+                                                VStack(alignment: .leading){
+
+                                                    Text("Date: \(predictions.date ?? "")")
+                                                        .font(.system(size: 16, design: .default))
+                                                    Text("Prediction: \(predictions.stargazingPrediction ?? "")")
+                                                        .font(.system(size: 16, design: .default))
+                                                    Text("Conditions: \(predictions.condition ?? "") ")
+                                                        .font(.system(size: 16, design: .default))
+                                                }.frame(alignment: .leading)
+                                        }
+                                }.onAppear(perform: viewModelPrediction.refresh)
+                                 .listRowInsets(.init(top: 5, leading: 0, bottom: 5, trailing: 0))
+                                
+                            }.frame(width: 360, height: 660)
+                                     .background(Color("App textboxes and overlay"))
+                                     .cornerRadius(15)
+                                     //.onAppear(perform: viewModelPrediction.refresh)
+                        }
                 }
-            }.onAppear(perform: viewModelPrediction.refresh)
+            }
         }
     }
 
@@ -106,33 +123,14 @@ struct CondensedPredictionView: View {
 //    }
 //}
 
-struct PredictionViewRow: View {
-    
-    @ObservedObject var viewModelPrediction: moonViewModel
-    
-    var body: some View {
-        
-        let date = Text(Date(),
-                        style: .date)
-        
-        HStack{
-            //image
-            Image(viewModelPrediction.moonPhase).resizable().frame(width: 70, height: 70)
-            
-            Spacer().frame(width: 24)
-            //Text V stack
-            VStack(alignment: .leading){
-                
-                Text("Date: \(date)")
-                    .font(.system(size: 16, design: .default))
-                Text("Prediction: \(viewModelPrediction.prediction)")
-                    .font(.system(size: 16, design: .default))
-                Text("Conditions: \(viewModelPrediction.cloudCover) ")
-                    .font(.system(size: 16, design: .default))
-            }.frame(alignment: .leading)
-            
-        }.onAppear(perform: viewModelPrediction.refresh)
-         //.frame(width: 51, height: 97)
-            
-    }
-}
+//struct PredictionViewRow: View {
+//
+//    @ObservedObject var viewModelPrediction: predictionViewModel
+//
+//    var body: some View {
+//
+//        //.onAppear(perform: viewModelPrediction.refresh)
+//         //.frame(width: 51, height: 97)
+//
+//    }
+//}

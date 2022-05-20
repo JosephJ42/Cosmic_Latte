@@ -18,6 +18,7 @@ import SwiftUI
 
 public class moonViewModel : ObservableObject {
     
+    @Published var condensedPredictionsList: [predictions] = []
     @Published var date: String = "No date"
     @Published var location : String = "No Location"
     @Published var moonPhase : String = "Full Moon"
@@ -33,11 +34,15 @@ public class moonViewModel : ObservableObject {
     
     public func refresh(){
         moonAndClouds.getUsersLocation { moonAndCloudsInfo in DispatchQueue.main.async{
-            // self.date = getDateString()
+            
+            self.date = findDate(daysInFuture: 0)
+            
             self.location = getLocationString()
-            self.moonPhase =  moonPhaseCalculator(moonPhase: moonAndCloudsInfo.moonPhase)
-            self.cloudCover = cloudCoverageCalculator(cloudCover: moonAndCloudsInfo.cloudCover)
-            self.prediction = stargazingPrediction(moonPhase: moonAndCloudsInfo.moonPhase, cloudCover: moonAndCloudsInfo.cloudCover)
+            self.moonPhase =  moonPhaseCalculator(moonPhase: moonAndCloudsInfo.moonPhase[0])
+            self.cloudCover = cloudCoverageCalculator(cloudCover: moonAndCloudsInfo.cloudCover[0])
+            self.prediction = stargazingPrediction(moonPhase: moonAndCloudsInfo.moonPhase[0], cloudCover: moonAndCloudsInfo.cloudCover[0])
+            
+            self.condensedPredictionsList = getPredictions(moonPhase: moonAndCloudsInfo.moonPhase, condition: moonAndCloudsInfo.cloudCover)
             
         }
     }
@@ -123,8 +128,91 @@ extension getLocation: CLLocationManagerDelegate{
     }
     
 }
-
 //Adepted code ends
+
+//=================================
+// Condensed View View Model
+//=================================
+
+public class predictionViewModel: ObservableObject {
+    
+    @Published var condensedPredictionsList: [predictions] = []
+    
+    public let moonAndClouds: moonAndWeatherAPI
+    
+    public init (moonAndClouds: moonAndWeatherAPI){
+        
+        self.moonAndClouds = moonAndClouds
+    }
+    
+    public func predictonRefresh(){
+        moonAndClouds.getUsersLocation { predictionInfo in DispatchQueue.main.async{
+            
+            self.condensedPredictionsList = getPredictions(moonPhase: predictionInfo.moonPhase, condition: predictionInfo.cloudCover)
+            
+        }
+            print("print Predictions: ")
+            print(self.condensedPredictionsList)
+    
+    }
+}
+}
+
+public func getPredictions(moonPhase : [Double], condition :[Int]) -> [predictions]{
+    
+    var prediction: predictions
+    var predictionArray: [predictions] = []
+    
+    for i in 0..<8{
+        
+        let moonPhaseName = moonPhaseCalculator(moonPhase: moonPhase[i])
+        let date = findDate(daysInFuture: i)
+        let stargazingPrediction =  stargazingPrediction(moonPhase: moonPhase[i], cloudCover: condition[i])
+        let cloudCoverage = cloudCoverageCalculator(cloudCover: condition[i])
+        
+        prediction = predictions(moonPhase: moonPhaseName, date: date, stargazingPrediction: stargazingPrediction, condition: cloudCoverage)
+
+        predictionArray.append(prediction)
+    }
+    
+    print(predictionArray)
+    
+    return predictionArray
+    
+}
+
+public struct predictions: Identifiable {
+   
+    public let id = UUID()
+    let moonPhase: String?
+    let date: String?
+    let stargazingPrediction: String?
+    let condition: String?
+    
+}
+
+// The Below date code was Adapted from :
+//https://stackoverflow.com/questions/54084023/how-to-get-the-todays-and-tomorrows-date-in-swift-4
+
+public func findDate (daysInFuture: Int) -> String{
+    
+    var calendar = Calendar.current
+    // Use the following line if you want midnight UTC instead of local time
+    //calendar.timeZone = TimeZone(secondsFromGMT: 0)
+    let today = Date()
+    let midnight = calendar.startOfDay(for: today)
+    let tomorrow = calendar.date(byAdding: .day, value: daysInFuture, to: midnight)!
+    
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd/MM/YYYY"
+    
+    let formattedDate: String = dateFormatter.string(from: tomorrow)
+    
+    return formattedDate
+}
+// end of adapted code
+
 
 //=================================
 // Cosmic Lattes Prediction Engine
@@ -390,11 +478,6 @@ public class spaceNewsViewModel: ObservableObject{
             self.articles = getArticles(title: spaceNewsInfo.title, source: spaceNewsInfo.newsSite, desription: spaceNewsInfo.summary, imageUrl: spaceNewsInfo.imageUrl, url: spaceNewsInfo.url )
             
             }
-//            print(self.title)
-//            print(self.newsSource)
-//            print(self.newsDescription)
-//            print(self.newsImageUrl)
-//            print(self.newsArticleLinkUrl)
         }
     }
 }
@@ -412,8 +495,6 @@ public func getArticles(title : [String], source : [String] , desription : [Stri
 
         articleArray.append(article)
     }
-    
-    print(articleArray)
     
     return articleArray
 }

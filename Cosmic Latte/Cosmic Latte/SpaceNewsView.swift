@@ -76,7 +76,9 @@ struct SpaceNewsView: View {
     
                             VStack(){
                                 
-                                //Text("News Feed")
+                                Text("News Feed")
+                                    .padding()
+                                    .frame(alignment: .center)
                                 
                                 List (viewModelSpaceNews.articles) { articles in
                                     Link(destination: URL(string: articles.url ?? "")!){
@@ -95,12 +97,12 @@ struct SpaceNewsView: View {
 
                                             Spacer().frame(width: 10)
                                             VStack(alignment: .leading){
-                                                Text(articles.title ?? "") //viewModel.title
+                                                Text(articles.title ?? "")
                                                     .font(.system(size: 12, design: .default))
-                                                Text("Source: \(articles.newsSite ?? "")") //viewModel.newsSource
+                                                Text("Source: \(articles.newsSite ?? "")")
                                                     .font(.system(size: 10, design: .default))
                                                 Text("")
-                                                Text(articles.summary ?? "") //viewModel.newsDescription
+                                                Text(articles.summary ?? "") 
                                                     .font(.system(size: 10, design: .default))
                                                     .fixedSize(horizontal: false, vertical: true)
 

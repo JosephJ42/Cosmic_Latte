@@ -21,8 +21,7 @@ struct MainView: View {
         
         let moonStatus = viewModelOne.moonPhase
         
-        let date = Text(Date(),
-                        style: .date)
+        let date = viewModelOne.date
         
         //let location = "\(viewModelOne.location)"
         

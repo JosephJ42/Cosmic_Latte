@@ -11,17 +11,50 @@ import SwiftUI
 
 //Data model for moon phase and cloud coverage data
 public struct moonAndClouds : Hashable {
-    
-    let moonPhase: Double
-    let cloudCover: Int
-    
-    init(response: moonAndWeatherAPIResponse){
-        
-        moonPhase = response.daily.first?.moon_phase ?? 0.00
-        cloudCover = response.daily.first?.clouds ?? 0
-        
+        var moonPhase: [Double] = []
+        var cloudCover: [Int] = []
+
+        init(response: moonAndWeatherAPIResponse){
+            
+            response.daily.forEach{ instance in
+                moonPhase.append(instance.moon_phase)
+                cloudCover.append(instance.clouds)
+            }
+        //print(moonPhase)
+        //print(cloudCover)
+        }
     }
-}
+//
+//    let moonPhase: Double
+//    let cloudCover: Int
+//
+//    init(response: moonAndWeatherAPIResponse){
+//
+//        moonPhase = response.daily.first?.moon_phase ?? 0.00
+//        cloudCover = response.daily.first?.clouds ?? 0
+//
+//    }
+//}
+
+// Data model for the condensed prediction view
+//public struct condensedPrediction: Hashable{
+//
+//    var moonPhase: [Double] = []
+//    var cloudCover: [Int] = []
+//
+//    init(response: moonAndWeatherAPIResponse){
+//
+//        response.daily.forEach{ instance in
+//            moonPhase.append(instance.moon_phase)
+//            cloudCover.append(instance.clouds)
+//        }
+//    print("Printing condensed Prediction data model")
+//    print(moonPhase)
+//    print(cloudCover)
+//    }
+//}
+
+
 // data model for plants and their visibility
 
 public struct planets: Hashable{
@@ -45,8 +78,6 @@ public struct planets: Hashable{
 
 public struct spaceNews{
     
-    
-    
     var title: [String] = []
     var  url: [String] = []
     var  imageUrl: [String] = []
@@ -69,41 +100,5 @@ public struct spaceNews{
             summary.append(article.summary ?? "")
         }
         
-//        print(title)
-//        print(url)
-//        print(imageUrl)
-//        print(newsSite)
-//        print(summary)
-        
     }
 }
-
-// old code, clean up before submission
-//
-
-//        title = response.SpaceNewsMain.title
-//        url = response.SpaceNewsMain.url
-//        imageUrl = response.SpaceNewsMain.imageUrl
-//        newsSite = response.SpaceNewsMain.newsSite
-//        summary = response.SpaceNewsMain.summary
-
-
-//        title = response.title ?? ""
-//        url = response.url ?? ""
-//        imageUrl = response.imageUrl ?? ""
-//        newsSite = response.newsSite ?? ""
-//        summary = response.summary ?? ""
-
-//        print(response.newsData.description)
-
-//        title = response.newsData.first?.title ?? ""
-//        url = response.newsData.first?.url ?? ""
-//        imageUrl = response.newsData.first?.imageUrl ?? ""
-//        newsSite = response.newsData.first?.newsSite ?? ""
-//        summary = response.newsData.first?.summary ?? ""
-
-//        title = response.Article.first?.title ?? ""
-//        url = response.Article.first?.url ?? ""
-//        imageUrl = response.Article.first?.imageUrl ?? ""
-//        newsSite = response.Article.first?.newsSite ?? ""
-//        summary = response.Article.first?.summary ?? ""

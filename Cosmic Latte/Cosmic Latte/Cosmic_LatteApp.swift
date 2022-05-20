@@ -22,7 +22,7 @@ struct Cosmic_LatteApp: App {
             
             
             let spaceNews = spaceNewsAPI()
-            let spaceNewsViewModel = spaceNewsViewModel(spaceNews: spaceNews) 
+            let spaceNewsViewModel = spaceNewsViewModel(spaceNews: spaceNews)
             
             ContentView( moonAndCloudCoverageViewModel: moonAndCloudCoverageViewModel,
                          planetsViewModel: planetsViewModel, spaceNewsViewModel: spaceNewsViewModel)
