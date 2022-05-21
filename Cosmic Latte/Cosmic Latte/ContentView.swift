@@ -86,7 +86,7 @@ struct ContentView: View {
                             Image(systemName: "moon")
                             Text("Space News")
                         }
-        } // tab bar animations go here
+        }
     }
 }
 
@@ -97,12 +97,9 @@ struct ContentView_Previews: PreviewProvider {
             planetsViewModel: planetViewModel(planets: planetAPI()),
             spaceNewsViewModel: spaceNewsViewModel(spaceNews: spaceNewsAPI()))
             
-        
             .preferredColorScheme(.light)
             .previewInterfaceOrientation(.portrait)
             .environment(\.locale, Locale(identifier: "en_GB"))
         
-        
-
     }
 }

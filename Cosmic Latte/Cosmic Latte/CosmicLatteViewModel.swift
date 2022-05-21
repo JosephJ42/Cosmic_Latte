@@ -52,13 +52,9 @@ public class moonViewModel : ObservableObject {
 public func getLocationString() -> String {
 
     let locationManger = getLocation()
-
-    //let location = locationManger.location != nil ? locationManger.location!.coordinate : CLLocationCoordinate2D()
     
     let city : String = locationManger.locationCityGlobal ?? ""
  
-    //print("the City is: \(locationManger.locationCityGlobal ?? "")")
-    
     return city
 }
 
@@ -106,23 +102,21 @@ extension getLocation: CLLocationManagerDelegate{
                        guard let placeMark = placemarks?.first else { return }
 
                        // Location name
-                       if let locationName = placeMark.location {
-                           //print(locationName)
-                           self.locationNameGlobal = locationName
-                           //print(self.locationNameGlobal!)
+                   if placeMark.location != nil {
+                        
+                           self.locationNameGlobal = placeMark.location!
                        }
                        // City
                    if placeMark.subAdministrativeArea != nil {
-                           //print(city)
+                           
                            self.locationCityGlobal = placeMark.subAdministrativeArea!
-                           //print(self.locationCityGlobal!)
                           
                        }
                        // Country
                    if placeMark.country != nil {
-                           //print(country)
+                           
                            self.locationCountryNameGlobal = placeMark.country!
-                           //print(self.locationCountryNameGlobal!)
+                           
                        }
                })
     }
@@ -191,14 +185,12 @@ public struct predictions: Identifiable {
     
 }
 
-// The Below date code was Adapted from :
+// The below date code was Adapted from :
 //https://stackoverflow.com/questions/54084023/how-to-get-the-todays-and-tomorrows-date-in-swift-4
 
 public func findDate (daysInFuture: Int) -> String{
     
     let calendar = Calendar.current
-    // Use the following line if you want midnight UTC instead of local time
-    //calendar.timeZone = TimeZone(secondsFromGMT: 0)
     let today = Date()
     let midnight = calendar.startOfDay(for: today)
     let tomorrow = calendar.date(byAdding: .day, value: daysInFuture, to: midnight)!
@@ -246,8 +238,6 @@ public func stargazingPrediction( moonPhase: Double, cloudCover: Int) -> String 
     default:
         moonPhaseScore = 1
     }
-    
-    //
     
     let cloudCoverText: String = cloudCoverageCalculator(cloudCover: cloudCover)
     
@@ -300,8 +290,7 @@ public func stargazingPrediction( moonPhase: Double, cloudCover: Int) -> String 
 //======================
 // Moon Phase Caculator
 //======================
-//
-//
+
 public func moonPhaseCalculator( moonPhase: Double) -> String {
     var moonPhaseString: String = ""
     
@@ -343,8 +332,7 @@ public func moonPhaseCalculator( moonPhase: Double) -> String {
 //==========================
 // Cloud Coverage Caculator
 //==========================
-//
-//
+
 public func cloudCoverageCalculator(cloudCover: Int) -> String {
     
     var cloudCoverageString: String = ""
@@ -453,7 +441,9 @@ public func checkPlanet(planetBeingChecked: String , planetList: [String]) -> Bo
     return isPresent
 }
 
-// Space news
+//=======================
+// Space News View Model
+//=======================
 
 public class spaceNewsViewModel: ObservableObject{
     

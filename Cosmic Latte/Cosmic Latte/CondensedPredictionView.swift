@@ -15,7 +15,7 @@ struct CondensedPredictionView: View {
         
     var body: some View {
         
-        let location = "\(locationManger.locationCityGlobal ?? "")"
+        let location = "\(locationManger.locationCityGlobal ?? "Unknown Name")"
         
             ZStack{
                 Color("appBackground")
@@ -120,22 +120,3 @@ struct CondensedPredictionView: View {
             }
         }
     }
-
-//struct CondensedPredictionView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CondensedPredictionView()
-//            .preferredColorScheme(.light)
-//    }
-//}
-
-//struct PredictionViewRow: View {
-//
-//    @ObservedObject var viewModelPrediction: predictionViewModel
-//
-//    var body: some View {
-//
-//        //.onAppear(perform: viewModelPrediction.refresh)
-//         //.frame(width: 51, height: 97)
-//
-//    }
-//}

@@ -20,19 +20,11 @@ struct MainView: View {
         
         
         let moonStatus = viewModelOne.moonPhase
-        
         let date = viewModelOne.date
-        
-        //let location = "\(viewModelOne.location)"
-        
-        let location = "\(locationManger.locationCityGlobal ?? "")"
-        
+        let location = "\(locationManger.locationCityGlobal ?? "Unknown Name")"
         let prediction = viewModelOne.prediction
-        
         let skyInfo = "\(viewModelOne.cloudCover)"
-        
         let visablePlanetList = "\(viewModelTwo.planetList)"
-        
         
         ZStack{
             Color("appBackground")
@@ -44,7 +36,7 @@ struct MainView: View {
                         .fill(Color.clear)
                         .frame(width: .infinity, height: 400, alignment: .top)
                         .background(Color("App image gallery background"))
-//                        .ignoresSafeArea()
+
                     
                     Image("background hill")
                         .resizable()
@@ -215,9 +207,6 @@ struct MainView: View {
                         
                         Text("Location: \(location)" )
                             .font(.system(size: 18, design: .default))
-                        
-//                        Text("Location: \(formattedLat), \(formattedLon)" )
-//                            .font(.system(size: 18, design: .default))
                     }
                 }.frame(width: 360, height: 60, alignment: .top)
                 
@@ -272,10 +261,3 @@ struct MainView: View {
          .onAppear(perform: viewModelTwo.planetVisibilityRefresh)
     }
 }
-
-//struct MainView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MainView(viewModelOne: moonViewModel)
-//
-//    }
-//}

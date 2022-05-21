@@ -124,38 +124,3 @@ struct SpaceNewsView: View {
             }
         }
     }
-
-
-//struct SpaceNewsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SpaceNewsView()
-//    }
-//}
-
-//struct NewsRow: View {
-//
-//    @ObservedObject var viewModelSpaceNews: spaceNewsViewModel
-//
-//
-//
-//    var body: some View {
-//        HStack{
-//            AsyncImage(url: URL(string: viewModelSpaceNews.newsImageUrl)) //viewModel.newsImageUrl
-//                .frame(width: 125, height: 100)
-//                .cornerRadius(15)
-//
-//
-//            Spacer().frame(width: 10)
-//            VStack(alignment: .leading){
-//                Text(viewModelSpaceNews.title) //viewModel.title
-//                    .font(.system(size: 12, design: .default))
-//                Text(viewModelSpaceNews.newsSource) //viewModel.newsSource
-//                    .font(.system(size: 10, design: .default))
-//                Text(viewModelSpaceNews.newsDescription) //viewModel.newsDescription
-//                    .font(.system(size: 10, design: .default))
-//
-//            }
-//
-//        }.onAppear(perform: viewModelSpaceNews.newsRefresh)
-//    }
-//}

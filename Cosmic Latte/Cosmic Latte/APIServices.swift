@@ -9,8 +9,7 @@ import Foundation
 import CoreLocation
 import MapKit
 
-//Moon and cloud cover API request based on location (WORKS!!!)
-
+//Moon and cloud cover API request based on location
 public final class moonAndWeatherAPI: NSObject, CLLocationManagerDelegate {
     
     public override init(){
@@ -53,9 +52,7 @@ public final class moonAndWeatherAPI: NSObject, CLLocationManagerDelegate {
                     self.completionHandler?(moonAndClouds(response: response))
                 }
                 
-                print("At Moon Response")
-                //print(response)
-                
+               // print("At Moon Response")
                 
             }.resume()
     }
@@ -78,7 +75,7 @@ struct moonAndWeatherAPIMain: Decodable {
 }
 
 
-//Plant API Request based on location (works!)
+//Plant API Request based on location
 
 public final class planetAPI: NSObject, CLLocationManagerDelegate {
     
@@ -121,7 +118,7 @@ public final class planetAPI: NSObject, CLLocationManagerDelegate {
                 self.completionHandler?(planets(response: response))
             }
                 
-                print("At Planet Response")
+                //print("At Planet Response")
                 //print(response)
                 
         }.resume()
@@ -135,52 +132,38 @@ struct viewablePlanetsAPIResponse: Decodable, Hashable{
 
 struct planetsAPIMain: Decodable, Hashable{
     let name: String
-    //let aboveHorizon : Bool
     
     enum CodingKeys: CodingKey{
         case name
-        //case aboveHorizon
     }
 }
 
 
 // Space news API
 
-public final class spaceNewsAPI: NSObject { // is making call just not storing properly //, CLLocationManagerDelegate
+public final class spaceNewsAPI: NSObject {
     
     public override init(){
         super.init()
-     //   getLocation.delegate = self
+     
     }
     
-//    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        spaceNewsDataRequest()
-//    }
-//
-//    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-//        print("Issue with data: \(error.localizedDescription)")
-//    }
-    
-        
     private let getLocation = CLLocationManager()
     private var completionHandler: ((spaceNews)-> Void)?
-    
     
     public func getNewsData(_ completionHandler: @escaping((spaceNews)-> Void)){
             self.completionHandler = completionHandler
             spaceNewsDataRequest()
     }
     
-    
     private func spaceNewsDataRequest(){
         guard let spaceNewsAPIString = "https://api.spaceflightnewsapi.net/v3/articles".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         else {return}
         
-        print("Space New API request Running")
+        //print("Space New API request Running")
         
         guard let url = URL(string: spaceNewsAPIString) else {return}
          
-        //print("1")
         URLSession.shared.dataTask(with: url){ data, response, error in guard error == nil, let data = data else {return}
            
             if let response = try? JSONDecoder().decode([SpaceNewsAPIMain].self, from: data){
@@ -209,41 +192,3 @@ struct SpaceNewsAPIMain: Decodable{
     }
     
 }
-        
-// Old Space news API code
-// Remove when done
-
-//struct spaceNewsAPIResponse: Decodable{
-//
-//    let title: String?
-//    let url: String?
-//    let imageUrl: String?
-//    let newsSite: String?
-//    let summary : String?
-//
-//    enum CodingKeys: CodingKey{
-//        case title, url, imageUrl, newsSite, summary
-//    }
-//
-//    //typealias is used to handle issue with this data consisting of an unnamed array of dictionaries
-//    //let Article : [spaceNewsAPIMain]
-//}
-//
-//struct spaceNewsAPIMain: Decodable, Hashable {
-//    let title: String?
-//    let url: String?
-//    let imageUrl: String?
-//    let newsSite: String?
-//    let summary : String?
-//
-//    enum CodingKeys: CodingKey{
-//        case title, url, imageUrl, newsSite, summary
-//    }
-//
-//
-//}
-//struct SpaceNewsAPIResponse: Decodable{
-//
-//    let newsData: [SpaceNewsAPIMain]
-//
-//}

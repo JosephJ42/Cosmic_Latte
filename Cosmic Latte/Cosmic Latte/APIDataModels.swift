@@ -17,6 +17,7 @@ public struct moonAndClouds : Hashable {
         init(response: moonAndWeatherAPIResponse){
             
             response.daily.forEach{ instance in
+                
                 moonPhase.append(instance.moon_phase)
                 cloudCover.append(instance.clouds)
             }
@@ -24,36 +25,6 @@ public struct moonAndClouds : Hashable {
         //print(cloudCover)
         }
     }
-//
-//    let moonPhase: Double
-//    let cloudCover: Int
-//
-//    init(response: moonAndWeatherAPIResponse){
-//
-//        moonPhase = response.daily.first?.moon_phase ?? 0.00
-//        cloudCover = response.daily.first?.clouds ?? 0
-//
-//    }
-//}
-
-// Data model for the condensed prediction view
-//public struct condensedPrediction: Hashable{
-//
-//    var moonPhase: [Double] = []
-//    var cloudCover: [Int] = []
-//
-//    init(response: moonAndWeatherAPIResponse){
-//
-//        response.daily.forEach{ instance in
-//            moonPhase.append(instance.moon_phase)
-//            cloudCover.append(instance.clouds)
-//        }
-//    print("Printing condensed Prediction data model")
-//    print(moonPhase)
-//    print(cloudCover)
-//    }
-//}
-
 
 // data model for plants and their visibility
 
@@ -64,14 +35,12 @@ public struct planets: Hashable{
     
     init(response: viewablePlanetsAPIResponse) {
         
-        
         response.data.forEach { name in
             
             planetName.append(name.name)
-            
         }
         
-        print(planetName)
+        //print(planetName)
            
     }
 }
