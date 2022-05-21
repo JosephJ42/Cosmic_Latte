@@ -39,6 +39,7 @@ struct ContentView: View {
                     .ignoresSafeArea()
                     .tabItem {
                         Image(systemName: "house")
+                        
                         Text("Home")
                     }
                     

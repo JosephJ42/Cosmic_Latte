@@ -85,6 +85,11 @@ struct CondensedPredictionView: View {
                                     .padding()
                                     .frame(alignment: .center)
                                 
+                                Divider()
+                                    .background(Color.primary)
+                                
+                                Spacer().frame(height: 0)
+                                
                                 List(viewModelPrediction.condensedPredictionsList) { predictions in
                                         
                                         HStack(){

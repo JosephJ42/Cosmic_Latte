@@ -51,7 +51,7 @@ public class moonViewModel : ObservableObject {
 
 public func getLocationString() -> String {
 
-    var locationManger = getLocation()
+    let locationManger = getLocation()
 
     //let location = locationManger.location != nil ? locationManger.location!.coordinate : CLLocationCoordinate2D()
     
@@ -112,14 +112,14 @@ extension getLocation: CLLocationManagerDelegate{
                            //print(self.locationNameGlobal!)
                        }
                        // City
-                       if let city = placeMark.subAdministrativeArea {
+                   if placeMark.subAdministrativeArea != nil {
                            //print(city)
                            self.locationCityGlobal = placeMark.subAdministrativeArea!
                            //print(self.locationCityGlobal!)
                           
                        }
                        // Country
-                       if let country = placeMark.country {
+                   if placeMark.country != nil {
                            //print(country)
                            self.locationCountryNameGlobal = placeMark.country!
                            //print(self.locationCountryNameGlobal!)
@@ -196,7 +196,7 @@ public struct predictions: Identifiable {
 
 public func findDate (daysInFuture: Int) -> String{
     
-    var calendar = Calendar.current
+    let calendar = Calendar.current
     // Use the following line if you want midnight UTC instead of local time
     //calendar.timeZone = TimeZone(secondsFromGMT: 0)
     let today = Date()

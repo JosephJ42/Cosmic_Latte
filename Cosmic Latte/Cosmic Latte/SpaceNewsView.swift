@@ -80,6 +80,10 @@ struct SpaceNewsView: View {
                                     .padding()
                                     .frame(alignment: .center)
                                 
+                                Divider()
+                                    .background(Color.primary)
+                                
+                                Spacer().frame(height: 0)
                                 List (viewModelSpaceNews.articles) { articles in
                                     Link(destination: URL(string: articles.url ?? "")!){
                                         HStack{
@@ -88,7 +92,7 @@ struct SpaceNewsView: View {
                                                     image.resizable()
                                                     .frame(width: 150, height: 125)
                                                 }else{
-                                                    Image(systemName: "exclamationmark.circle")
+                                                    ProgressView()
                                                 }
                                             }.scaledToFit()
                                              .frame(width: 150, height: 125)

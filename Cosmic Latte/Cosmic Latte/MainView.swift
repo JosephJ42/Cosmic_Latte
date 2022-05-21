@@ -62,17 +62,21 @@ struct MainView: View {
                                     .resizable()
                                     .frame(width: 75, height: 75, alignment: .center)
                                     .opacity(viewModelTwo.isNeptuneVisable == true ? 1:0)
+                                    .animation(.easeInOut(duration: 1.1), value: viewModelTwo.isNeptuneVisable)
+                                
                             }.frame(width: 75, height: 75, alignment: .center)
                             Image("Mercury")
                                 .resizable()
                                 .frame(width: 75, height: 75, alignment: .center)
                                 .opacity(viewModelTwo.isMercuryVisable == true ? 1:0)
+                                .animation(.easeInOut(duration: 1.1), value: viewModelTwo.isMercuryVisable)
                             VStack{
                                 Spacer().frame( height: 20)
                                 Image("Mars")
                                     .resizable()
                                     .frame(width: 75, height: 75, alignment: .center)
                                     .opacity(viewModelTwo.isMarsVisable == true ? 1:0)
+                                    .animation(.easeInOut(duration: 1.1), value: viewModelTwo.isMarsVisable)
                             }.frame(width: 75, height: 75, alignment: .center)
                         }
                         
@@ -83,15 +87,20 @@ struct MainView: View {
                                 .resizable()
                                 .frame(width: 75, height: 75, alignment: .center)
                                 .opacity(viewModelTwo.isVenusVisable == true ? 1:0)
+                                .animation(.easeInOut(duration: 1.1), value: viewModelTwo.isVenusVisable)
                             Spacer().frame(width: 30)
+                            
                             Image(moonStatus)
                                 .resizable()
                                 .frame(width: 120, height: 120, alignment: .center)
+                                .animation(.easeInOut(duration: 1.1), value: moonStatus)
+                            
                             Spacer().frame(width: 30)
                             Image("Saturn")
                                 .resizable()
                                 .frame(width: 75, height: 75, alignment: .center)
                                 .opacity(viewModelTwo.isSaturnVisable == true ? 1:0)
+                                .animation(.easeInOut(duration: 1.1), value: viewModelTwo.isSaturnVisable)
                             Spacer()
                         }
                         
@@ -102,6 +111,7 @@ struct MainView: View {
                                     .resizable()
                                     .frame(width: 75, height: 75, alignment: .center)
                                     .opacity(viewModelTwo.isJupiterVisable == true ? 1:0)
+                                    .animation(.easeInOut(duration: 1.1), value: viewModelTwo.isJupiterVisable)
                                 Spacer().frame( height: 20)
                             }.frame(width: 75, height: 75, alignment: .center)
                             
@@ -109,12 +119,13 @@ struct MainView: View {
                                 .resizable()
                                 .frame(width: 75, height: 75, alignment: .center)
                                 .opacity(viewModelTwo.isPlutoVisable == true ? 1:0)
-                            
+                                .animation(.easeInOut(duration: 1.1), value: viewModelTwo.isPlutoVisable)
                             VStack{
                                 Image("Uranus") //ha
                                     .resizable()
                                     .frame(width: 75, height: 75, alignment: .center)
                                     .opacity(viewModelTwo.isUranusVisable == true ? 1:0)
+                                    .animation(.easeInOut(duration: 1.1), value: viewModelTwo.isUranusVisable)
                                 Spacer().frame( height: 20)
                                 
                             }.frame(width: 75, height: 75, alignment: .center)
@@ -134,7 +145,7 @@ struct MainView: View {
                                 .resizable()
                                 .frame(width: 325, height: 250, alignment: .center)
                                 .opacity(skyInfo == "Overcast" ? 1:0)
-                                
+                                .animation(.easeInOut(duration: 1.1), value: skyInfo)
                             }
                         }.frame(width: 500, height: 355, alignment: .top)
                         
@@ -149,7 +160,7 @@ struct MainView: View {
                                     .resizable()
                                     .frame(width: 120, height: 120, alignment: .center)
                                     .opacity(skyInfo == "Partly Cloudy" ? 1:0)
-                                    
+                                    .animation(.easeInOut(duration: 1.1), value: skyInfo)
                                     Spacer().frame( width: 150)
                                     
                                 }
@@ -159,7 +170,7 @@ struct MainView: View {
                                         .resizable()
                                         .frame(width: 130, height: 130, alignment: .center)
                                         .opacity(skyInfo == "Partly Cloudy" ? 1:0)
-                                    
+                                        .animation(.easeInOut(duration: 1.1), value: skyInfo)
                                     Spacer().frame( width: 120)
                                     
                                     VStack{
@@ -167,7 +178,7 @@ struct MainView: View {
                                             .resizable()
                                             .frame(width: 120, height: 120, alignment: .center)
                                             .opacity(skyInfo == "Partly Cloudy" ? 1:0)
-                                        
+                                            .animation(.easeInOut(duration: 1.1), value: skyInfo)
                                         Spacer().frame(height: 50)
                                     }
                                     
