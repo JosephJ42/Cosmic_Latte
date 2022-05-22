@@ -400,7 +400,7 @@ public class planetViewModel:ObservableObject{
 
 public func getPlanetString(planetList: [String]) -> String {
     
-    var planetString = "No plants"
+    var planetString = "No planets"
     var planetListFiltered : [String]
     
     //removes the moon from the planet list
@@ -422,7 +422,7 @@ public func getPlanetString(planetList: [String]) -> String {
         
     }
     else{
-        planetString = "No plants"
+        planetString = "No planets"
     }
     
     return planetString
