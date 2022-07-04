@@ -21,8 +21,8 @@ public struct moonAndClouds : Hashable {
                 moonPhase.append(instance.moon_phase)
                 cloudCover.append(instance.clouds)
             }
-        //print(moonPhase)
-        //print(cloudCover)
+        print(moonPhase)
+        print(cloudCover)
         }
     }
 

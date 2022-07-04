@@ -241,7 +241,7 @@ struct MainView: View {
                         Text("Tonight the moon will be a \(moonStatus).")
                             .font(.system(size: 16, design: .default))
                         
-                        Text("\(visablePlanetList) will be visable from your location.")
+                        Text("\(visablePlanetList) will be visible from your location.")
                             .font(.system(size: 16, design: .default))
                         
                         Spacer().frame(height: 20)

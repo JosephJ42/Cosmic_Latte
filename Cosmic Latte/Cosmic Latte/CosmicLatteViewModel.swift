@@ -169,7 +169,7 @@ public func getPredictions(moonPhase : [Double], condition :[Int]) -> [predictio
         predictionArray.append(prediction)
     }
     
-    print(predictionArray)
+    //print(predictionArray)
     
     return predictionArray
     
@@ -243,7 +243,7 @@ public func stargazingPrediction( moonPhase: Double, cloudCover: Int) -> String 
     
     switch cloudCoverText{
         
-    case "Clear Skys":
+    case "Clear Skies":
         cloudCoverScore = 100
         
     case "Partly Cloudy":
@@ -298,7 +298,7 @@ public func moonPhaseCalculator( moonPhase: Double) -> String {
         case 0:
             moonPhaseString = "New Moon"
         
-        case 0.1 ... 0.24:
+        case 0.01 ... 0.24:
             moonPhaseString = "Waxing Crescent"
         
         case 0.25:
